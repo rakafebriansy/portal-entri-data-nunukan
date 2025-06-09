@@ -12,11 +12,13 @@ return new class extends Migration {
     {
         Schema::create('alarms', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('report_id');
+            $table->unsignedBigInteger('report_sp_id')->nullable();
+            $table->unsignedBigInteger('report_pdrb_id')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
-            $table->foreign('report_id')->references('id')->on('reports')->onDelete('cascade');
+            $table->foreign('report_sp_id')->references('id')->on('report_sps')->onDelete('cascade');
+            $table->foreign('report_pdrb_id')->references('id')->on('report_pdrbs')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kategori_sps', function (Blueprint $table) {
+        Schema::create('report_pdrbs', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->enum('bidang',['pertanian','peternakan']);
             $table->timestamps();
         });
     }
@@ -24,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kategoris');
+        Schema::dropIfExists('report_pdrbs');
     }
 };

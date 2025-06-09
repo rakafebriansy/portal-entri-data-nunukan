@@ -4,19 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Report extends Model
+class ReportPdrb extends Model
 {
     protected $fillable = [
-        'category_id',
+        'kategori_pdrb_id',
         'user_id',
-        'year',
-        'description',
-        'sheet_url',
+        'tahun',
+        'deskripsi',
+        'url_file',
         'status',
     ];
-    public function category()
+    public function kategoriPdrb()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(KategoriPdrb::class);
     }
     public function user()
     {

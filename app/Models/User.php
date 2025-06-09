@@ -47,8 +47,12 @@ class User extends Authenticatable
         ];
     }
 
-    public function reports()
+    public function reportPdrbs()
     {
-        return $this->hasMany(Report::class);
+        return $this->hasMany(ReportPdrb::class);
+    }
+    public function reportSps()
+    {
+        return $this->hasMany(ReportSp::class);
     }
 }

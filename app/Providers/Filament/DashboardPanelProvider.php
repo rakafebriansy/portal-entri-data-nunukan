@@ -6,6 +6,7 @@ use App\Filament\Resources\ReportResource\Widgets\ConsumptionPredictChart;
 use App\Filament\Resources\ReportResource\Widgets\ConsumptionTable;
 use App\Filament\Resources\ReportResource\Widgets\FoodPlantsChart;
 use App\Filament\Resources\ReportResource\Widgets\HorticulturePlantsChart;
+use App\Filament\Resources\ReportResource\Widgets\OverviewStats;
 use App\Filament\Resources\ReportResource\Widgets\PlantsChart;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -34,7 +35,7 @@ class DashboardPanelProvider extends PanelProvider
             ->path('dashboard')
             // ->login()
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => 'rgb(59, 123, 219)',
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
@@ -43,7 +44,8 @@ class DashboardPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                // Widgets\AccountWidget::class,
+                    // Widgets\AccountWidget::class,
+                OverviewStats::class,
                 FoodPlantsChart::class,
                 ConsumptionPredictChart::class,
                 HorticulturePlantsChart::class,

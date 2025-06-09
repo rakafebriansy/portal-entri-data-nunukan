@@ -2,9 +2,9 @@
 
 namespace App\Filament\EntriData\Resources;
 
-use App\Filament\EntriData\Resources\CategoryResource\Pages;
-use App\Filament\EntriData\Resources\CategoryResource\RelationManagers;
-use App\Models\Category;
+use App\Filament\EntriData\Resources\KategoriPdrbResource\Pages;
+use App\Filament\EntriData\Resources\KategoriPdrbResource\RelationManagers;
+use App\Models\KategoriPdrb;
 use Filament\Forms;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\TextInput;
@@ -16,21 +16,23 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class CategoryResource extends Resource
+class KategoriPdrbResource extends Resource
 {
-    protected static ?string $model = Category::class;
+    protected static ?string $model = KategoriPdrb::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-folder-open';
-    protected static ?string $label = 'Kategori';
 
-    protected static ?string $pluralLabel = 'Daftar Kategori';
+    protected static ?string $label = 'Kategori PDRB';
+
+    protected static ?string $pluralLabel = 'Daftar Kategori PDRB';
+    protected static ?string $navigationGroup = 'Kategori';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Grid::make(2)->schema([
-                    TextInput::make('name')
+                    TextInput::make('nama')
                         ->label('Nama Kategori')
                         ->required()
                         ->maxLength(255),
@@ -43,13 +45,14 @@ class CategoryResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id')->sortable()->label('ID'),
-                TextColumn::make('name')->searchable()->label('Nama Produk'),
+                TextColumn::make('nama')->searchable()->label('Nama Kategori'),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -68,9 +71,9 @@ class CategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCategories::route('/'),
-            'create' => Pages\CreateCategory::route('/create'),
-            'edit' => Pages\EditCategory::route('/{record}/edit'),
+            'index' => Pages\ListKategoriPdrbs::route('/'),
+            'create' => Pages\CreateKategoriPdrb::route('/create'),
+            'edit' => Pages\EditKategoriPdrb::route('/{record}/edit'),
         ];
     }
 }

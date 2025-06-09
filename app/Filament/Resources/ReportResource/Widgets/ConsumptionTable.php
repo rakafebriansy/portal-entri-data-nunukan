@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\ReportResource\Widgets;
 
 use App\Models\Report;
+use App\Models\ReportSp;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -16,7 +17,7 @@ class ConsumptionTable extends BaseWidget
     {
         return $table
             ->query(
-                Report::query()
+                ReportSp::query()
             )
             ->columns([
                 TextColumn::make('category.name')
