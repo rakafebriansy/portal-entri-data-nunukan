@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('kategori_pdrbs', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('url');
+            $table->string('nama')->unique();
+            $table->string('url')->unique();
             $table->timestamps();
         });
     }

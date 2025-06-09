@@ -26,7 +26,12 @@ class KategoriPdrbResource extends Resource
 
     protected static ?string $pluralLabel = 'Daftar Kategori PDRB';
     protected static ?string $navigationGroup = 'Kategori';
+    private static function formatString($string)
+    {
+        $replaced = str_replace(' ', '', strtolower(trim($string)));
 
+        return $replaced;
+    }
     public static function form(Form $form): Form
     {
         return $form
@@ -35,7 +40,19 @@ class KategoriPdrbResource extends Resource
                     TextInput::make('nama')
                         ->label('Nama Kategori')
                         ->required()
+                        ->reactive()
+                        ->unique(ignoreRecord: true)
+                        ->live(onBlur: true)
+                        ->afterStateUpdated(fn($state, \Filament\Forms\Set $set, \Filament\Forms\Get $get) => $set('url', self::formatString($state)))
                         ->maxLength(255),
+                ]),
+                Grid::make(2)->schema([
+                    TextInput::make('url')
+                        ->label('URL')
+                        ->unique(ignoreRecord: true)
+                        ->required()
+                        ->readOnly()
+                        ->dehydrated(),
                 ]),
             ]);
     }

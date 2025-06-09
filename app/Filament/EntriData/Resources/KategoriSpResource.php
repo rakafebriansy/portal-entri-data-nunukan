@@ -43,16 +43,17 @@ class KategoriSpResource extends Resource
                         ->label('Nama Kategori')
                         ->required()
                         ->reactive() 
+                        ->unique(ignoreRecord: true)
+                        ->live(onBlur: true)
                         ->afterStateUpdated(fn($state, \Filament\Forms\Set $set, \Filament\Forms\Get $get) => $set('url', self::formatString($state)))
                         ->maxLength(255),
                 ]),
                 Grid::make(2)->schema([
                     TextInput::make('url')
                         ->label('URL')
+                        ->unique(ignoreRecord: true)
                         ->required()
-                        ->dehydrated()
-                        ->readOnly()
-                        ->maxLength(255),
+                        ->dehydrated(),
                 ]),
                 Grid::make(2)->schema([
                     Select::make('bidang')

@@ -2,7 +2,7 @@
 
 namespace App\Providers\Filament;
 
-use App\Filament\EntriData\Pages\Report\ListByKategoriReports;
+use App\Models\KategoriPdrb;
 use App\Models\KategoriSp;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -27,8 +27,28 @@ class EntriDataPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
+        // $categories = collect([
+        //     [
+        //         'model' => KategoriSp::orderBy('nama')->get(),
+        //         'urlPrefix' => '/entri-data/reports/sp',
+        //     ],
+        //     [
+        //         'model' => KategoriPdrb::orderBy('nama')->get(),
+        //         'urlPrefix' => '/entri-data/reports/pdrb',
+        //     ],
+        // ]);
+
+        // $navigationItems = $categories->flatMap(function ($categoryGroup) {
+        //     return $categoryGroup['model']->map(function ($item) use ($categoryGroup) {
+        //         return NavigationItem::make($item->nama)
+        //             ->url("{$categoryGroup['urlPrefix']}/" . ($item->bidang ? "{$item->bidang}/" : '') . "{$item->url}")
+        //             ->icon('heroicon-o-link')
+        //             ->group(Str::title($item->bidang ?? 'PDRB'));
+        //     });
+        // ->toArray();
+
         $kategoris = KategoriSp::orderBy('nama')->get();
-        $navigations = $kategoris->map(
+        $navigationItems = $kategoris->map(
             fn($item) =>
             NavigationItem::make($item->nama)
                 ->url("/entri-data/reports/sp/{$item->bidang}/{$item->url}")
@@ -41,17 +61,19 @@ class EntriDataPanelProvider extends PanelProvider
             ->brandName('Entri Data Penta')
             ->path('entri-data')
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => '#3B7BDB',
             ])
-            ->navigationItems($navigations)
+            ->navigationItems($navigationItems)
             ->discoverResources(in: app_path('Filament/EntriData/Resources'), for: 'App\\Filament\\EntriData\\Resources')
             ->discoverPages(in: app_path('Filament/EntriData/Pages'), for: 'App\\Filament\\EntriData\\Pages')
             ->pages([
                 Pages\Dashboard::class,
             ])
             ->routes(function () {
-                \Route::get('/reports/sp/{bidang}/{url}', ListByKategoriReports::class)
-                    ->name('entri-data.reports.list-by-kategori');
+                \Route::get('/reports/sp/{bidang}/{url}', \App\Filament\EntriData\Pages\Report\SP\ListByKategoriReports::class)
+                    ->name('entri-data.reports.sp.list-by-kategori');
+                \Route::get('/reports/pdrb/{url}', \App\Filament\EntriData\Pages\Report\PDRB\ListByKategoriReports::class)
+                    ->name('entri-data.reports.pdrb.list-by-kategori');
             })
             ->discoverWidgets(in: app_path('Filament/EntriData/Widgets'), for: 'App\\Filament\\EntriData\\Widgets')
             ->widgets([

@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('kategori_pdrb_id');
             $table->unsignedBigInteger('user_id');
-            $table->year('year');
-            $table->text('description');
-            $table->string('file_url');
+            $table->year('tahun');
+            $table->text('deskripsi');
+            $table->string('url_file');
             $table->enum('role',['belum selesai','selesai']);
 
             $table->foreign('kategori_pdrb_id')->references('id')->on('kategori_pdrbs')->onDelete('cascade');
