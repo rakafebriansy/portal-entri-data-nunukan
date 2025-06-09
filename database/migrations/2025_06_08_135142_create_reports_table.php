@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->year('year');
             $table->text('description');
-            $table->string('file');
+            $table->string('sheet_url');
             $table->enum('role',['belum selesai','selesai']);
             $table->timestamps();
 

@@ -24,6 +24,7 @@ class EntriDataPanelProvider extends PanelProvider
     {
         return $panel
             ->id('entri-data')
+            ->brandName('Entri Data Penta')
             ->path('entri-data')
             ->colors([
                 'primary' => Color::Amber,
@@ -36,7 +37,6 @@ class EntriDataPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/EntriData/Widgets'), for: 'App\\Filament\\EntriData\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,

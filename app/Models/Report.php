@@ -11,7 +11,15 @@ class Report extends Model
         'user_id',
         'year',
         'description',
-        'file',
+        'sheet_url',
         'status',
     ];
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
