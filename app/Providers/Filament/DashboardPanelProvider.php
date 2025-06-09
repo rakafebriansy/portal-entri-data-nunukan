@@ -2,6 +2,11 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Resources\ReportResource\Widgets\ConsumptionPredictChart;
+use App\Filament\Resources\ReportResource\Widgets\ConsumptionTable;
+use App\Filament\Resources\ReportResource\Widgets\FoodPlantsChart;
+use App\Filament\Resources\ReportResource\Widgets\HorticulturePlantsChart;
+use App\Filament\Resources\ReportResource\Widgets\PlantsChart;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -38,7 +43,11 @@ class DashboardPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
+                // Widgets\AccountWidget::class,
+                FoodPlantsChart::class,
+                ConsumptionPredictChart::class,
+                HorticulturePlantsChart::class,
+                ConsumptionTable::class
             ])
             ->middleware([
                 EncryptCookies::class,
