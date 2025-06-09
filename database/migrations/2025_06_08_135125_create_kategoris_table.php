@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('kategori_sps', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
+            $table->string('url');
             $table->enum('bidang',['pertanian','peternakan']);
             $table->timestamps();
         });

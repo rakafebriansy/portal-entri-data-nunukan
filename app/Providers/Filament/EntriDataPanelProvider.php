@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\EntriData\Pages\Report\ListByKategoriReports;
 use App\Models\KategoriSp;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -24,20 +25,13 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 class EntriDataPanelProvider extends PanelProvider
 {
-    private function formatString($string)
-    {
-        $replaced = str_replace(' ', '', strtolower(trim($string)));
-
-        return $replaced;
-    }
-
     public function panel(Panel $panel): Panel
     {
         $kategoris = KategoriSp::orderBy('nama')->get();
         $navigations = $kategoris->map(
             fn($item) =>
             NavigationItem::make($item->nama)
-                ->url("/entri-data/sp/{$item->bidang}/" . $this->formatString($item->nama))
+                ->url("/entri-data/reports/sp/{$item->bidang}/{$item->url}")
                 ->icon('heroicon-o-link')
                 ->group(Str::title($item->bidang))
         )->toArray();
@@ -55,6 +49,10 @@ class EntriDataPanelProvider extends PanelProvider
             ->pages([
                 Pages\Dashboard::class,
             ])
+            ->routes(function () {
+                \Route::get('/reports/sp/{bidang}/{url}', ListByKategoriReports::class)
+                    ->name('entri-data.reports.list-by-kategori');
+            })
             ->discoverWidgets(in: app_path('Filament/EntriData/Widgets'), for: 'App\\Filament\\EntriData\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,

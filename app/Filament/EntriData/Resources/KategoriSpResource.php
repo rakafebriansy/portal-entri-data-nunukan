@@ -28,7 +28,12 @@ class KategoriSpResource extends Resource
     protected static ?string $pluralLabel = 'Daftar Kategori Statistik Produksi';
     protected static ?string $navigationGroup = 'Kategori';
 
+    private static function formatString($string)
+    {
+        $replaced = str_replace(' ', '', strtolower(trim($string)));
 
+        return $replaced;
+    }
     public static function form(Form $form): Form
     {
         return $form
@@ -37,6 +42,16 @@ class KategoriSpResource extends Resource
                     TextInput::make('nama')
                         ->label('Nama Kategori')
                         ->required()
+                        ->reactive() 
+                        ->afterStateUpdated(fn($state, \Filament\Forms\Set $set, \Filament\Forms\Get $get) => $set('url', self::formatString($state)))
+                        ->maxLength(255),
+                ]),
+                Grid::make(2)->schema([
+                    TextInput::make('url')
+                        ->label('URL')
+                        ->required()
+                        ->dehydrated()
+                        ->readOnly()
                         ->maxLength(255),
                 ]),
                 Grid::make(2)->schema([

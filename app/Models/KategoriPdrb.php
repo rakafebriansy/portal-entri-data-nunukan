@@ -8,6 +8,7 @@ class KategoriPdrb extends Model
 {
     protected $fillable = [
         'nama',
+        'url',
     ];
 
     public function reportPdrbs()

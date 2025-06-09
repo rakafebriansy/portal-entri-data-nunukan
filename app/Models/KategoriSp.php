@@ -8,6 +8,7 @@ class KategoriSp extends Model
 {
     protected $fillable = [
         'nama',
+        'url',
         'bidang'
     ];
 
