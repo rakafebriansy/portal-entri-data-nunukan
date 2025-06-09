@@ -15,6 +15,6 @@ Route::prefix('/dashboard')->group(function() {
     Route::post('/login', [\App\Http\Controllers\Dashboard\AuthController::class, 'login'])->name('dashboard.login');
 });
 Route::prefix('/entri-data')->group(function() {
-    Route::get('/login', [\App\Http\Controllers\Dashboard\AuthController::class, 'showLoginForm'])->name('entri-data.loginForm');
-    Route::post('/login', [\App\Http\Controllers\Dashboard\AuthController::class, 'login'])->name('entri-data.login');
+    Route::get('/login', [\App\Http\Controllers\EntriData\AuthController::class, 'showLoginForm'])->name('entri-data.loginForm');
+    Route::post('/login', [\App\Http\Controllers\EntriData\AuthController::class, 'login'])->name('entri-data.login');
 });
