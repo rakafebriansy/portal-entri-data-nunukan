@@ -13,9 +13,9 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/forms'), // plugin bawaan filament
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/aspect-ratio'),
-  ],
+  // plugins: [
+  //   require('@tailwindcss/forms'), // plugin bawaan filament
+  //   require('@tailwindcss/typography'),
+  //   require('@tailwindcss/aspect-ratio'),
+  // ],
 };

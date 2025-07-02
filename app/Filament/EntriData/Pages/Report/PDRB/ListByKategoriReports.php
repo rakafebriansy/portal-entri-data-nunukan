@@ -21,14 +21,9 @@ class ListByKategoriReports extends Page implements HasTable
     {
         return false;
     }
-    public function getBreadcrumb(): string
-    {
-        return 'Daftar per Kategori';
-    }
-
     public function getTitle(): string
     {
-        return 'Daftar per Kategori';
+        return 'Entri Data PDRB - ' . $this->kategori->nama;
     }
     public static function getRoute(): string
     {
@@ -37,7 +32,7 @@ class ListByKategoriReports extends Page implements HasTable
 
     public function mount(string $url): void
     {
-        $kategori = KategoriPdrb::where('url', $url)->first();
+        $kategori = KategoriPdrb::where('nama', $this->denormalizeKategoriSp($url))->first();
         $this->kategori = $kategori;
     }
 
@@ -55,5 +50,14 @@ class ListByKategoriReports extends Page implements HasTable
             Tables\Columns\TextColumn::make('deskripsi')->label('Deskripsi'),
             Tables\Columns\TextColumn::make('url_file')->label('Link File'),
         ];
+    }
+    private function denormalizeKategoriSp(string $string): string
+    {
+        $string = str_replace('_', ' ', $string);
+        $pos = strpos($string, '-');
+        if ($pos !== false) {
+            $string = substr_replace($string, ' - ', $pos, 1);
+        }
+        return ucwords($string);
     }
 }

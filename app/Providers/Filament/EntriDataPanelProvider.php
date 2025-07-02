@@ -47,7 +47,8 @@ class EntriDataPanelProvider extends PanelProvider
 
         return $panel
             ->id('entri-data')
-            ->brandName('Entri Data Penta')
+            ->brandLogo(asset('images/colored_logo_penta.png'))
+            ->brandLogoHeight('40px')
             ->path('entri-data')
             ->colors([
                 'primary' => '#3B7BDB',
@@ -81,6 +82,8 @@ class EntriDataPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->viteTheme('resources/css/filament/entri-data/theme.css')
+            ;
     }
 }

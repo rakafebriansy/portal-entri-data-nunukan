@@ -32,4 +32,14 @@ class PDRB extends Page
         $kategoris = KategoriPdrb::all();
         $this->kategoris = $kategoris;
     }
+    private function normalizeKategoriSp(string $string): string
+    {
+        return strtolower(
+            str_replace(
+                [' - ', ' '],
+                ['-', '_'],
+                $string
+            )
+        );
+    }
 }
