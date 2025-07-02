@@ -18,7 +18,8 @@ return new class extends Migration
             $table->year('tahun');
             $table->text('deskripsi');
             $table->string('url_file');
-            $table->enum('role',['belum selesai','selesai']);
+            $table->enum('triwulan',[1,2,3,4]);
+            $table->enum('status',['belum selesai','selesai']);
 
             $table->foreign('kategori_pdrb_id')->references('id')->on('kategori_pdrbs')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

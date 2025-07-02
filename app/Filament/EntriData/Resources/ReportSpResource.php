@@ -7,6 +7,7 @@ use App\Filament\EntriData\Resources\ReportSpResource\RelationManagers;
 use App\Models\ReportSp;
 use Filament\Forms;
 use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -43,10 +44,8 @@ class ReportSpResource extends Resource
                         ->rules(['digits:4'])
                         ->helperText('Masukkan tahun antara 1900 sampai ' . date('Y'))
                         ->placeholder('Contoh: 2023'),
-                    Select::make('user_id')
-                        ->label('Pengguna')
-                        ->relationship('user', 'name')
-                        ->searchable()
+                    Hidden::make('user_id')
+                        ->default(auth()->id())
                         ->required(),
                     Textarea::make('deskripsi')
                         ->label('Deskripsi')
@@ -57,6 +56,7 @@ class ReportSpResource extends Resource
                         ->label('Kategori')
                         ->relationship('kategoriSp', 'nama')
                         ->searchable()
+                        ->preload()
                         ->required(),
                     TextInput::make('url_file')
                         ->label('Link File')

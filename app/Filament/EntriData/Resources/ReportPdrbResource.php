@@ -7,6 +7,7 @@ use App\Filament\EntriData\Resources\ReportPdrbResource\RelationManagers;
 use App\Models\ReportPdrb;
 use Filament\Forms;
 use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -41,18 +42,22 @@ class ReportPdrbResource extends Resource
                         ->rules(['digits:4'])
                         ->helperText('Masukkan tahun antara 1900 sampai ' . date('Y'))
                         ->placeholder('Contoh: 2023'),
-                    Select::make('user_id')
-                        ->label('Pengguna')
-                        ->relationship('user', 'name')
-                        ->searchable()
+                    Hidden::make('user_id')
+                        ->default(auth()->id())
                         ->required(),
-                    Textarea::make('deskripsi')
-                        ->label('Deskripsi')
-                        ->rows(5)
-                        ->placeholder('Masukkan deskripsi di sini...')
+                    Select::make('triwulan')
+                        ->label('Periode')
+                        ->preload()
+                        ->options([
+                            1 => 'Triwulan 1',
+                            2 => 'Triwulan 2',
+                            3 => 'Triwulan 3',
+                            4 => 'Triwulan 4',
+                        ])
                         ->required(),
                     Select::make('kategori_pdrb_id')
                         ->label('Kategori')
+                        ->preload()
                         ->relationship('kategoriPdrb', 'nama')
                         ->searchable()
                         ->required(),
@@ -60,7 +65,12 @@ class ReportPdrbResource extends Resource
                         ->label('Link File')
                         ->placeholder('Contoh: https://example.com')
                         ->url()
-                        ->required()
+                        ->required(),
+                    Textarea::make('deskripsi')
+                        ->label('Deskripsi')
+                        ->rows(5)
+                        ->placeholder('Masukkan deskripsi di sini...')
+                        ->required(),
                 ]),
             ]);
     }
@@ -69,29 +79,16 @@ class ReportPdrbResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('tahun')
-                    ->label('Tahun')
-                    ->sortable()
-                    ->searchable(),
-
-                TextColumn::make('deskripsi')
-                    ->label('Deskripsi')
-                    ->limit(50)
-                    ->wrap(),
-
-                TextColumn::make('url_file')
-                    ->label('Link File')
-                    ->url(fn($record) => $record->sheet_url, true)
+                Tables\Columns\TextColumn::make('deskripsi')->label('Deskripsi'),
+                Tables\Columns\TextColumn::make('triwulan')->label('Periode'),
+                Tables\Columns\TextColumn::make('tahun')->label('Tahun'),
+                Tables\Columns\TextColumn::make('url_file')->label('Link')
+                    ->formatStateUsing(fn() => 'Link')
+                    ->color('#FF0000')
+                    ->extraAttributes(['class' => 'text-blue-600 underline hover:text-blue-800 transition-colors'])
+                    ->url(fn($record) => $record->url_file, true)
                     ->openUrlInNewTab(),
-                TextColumn::make('user.name')
-                    ->label('Pengguna')
-                    ->sortable()
-                    ->searchable(),
-
-                TextColumn::make('kategoriPdrb.nama')
-                    ->label('Kategori')
-                    ->sortable()
-                    ->searchable(),
+                Tables\Columns\TextColumn::make('status')->label('Status Review'),
             ])
             ->filters([
                 //

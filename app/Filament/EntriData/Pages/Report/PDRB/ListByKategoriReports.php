@@ -38,17 +38,25 @@ class ListByKategoriReports extends Page implements HasTable
 
     protected function getTableQuery()
     {
-        return ReportPdrb::where('kategori_pdrb_id', $this->kategori->id)->orderBy('nama');
+        return ReportPdrb::where('kategori_pdrb_id', $this->kategori->id)->orderBy('tahun')->orderBy('triwulan');
     }
 
     protected function getTableColumns(): array
     {
         return [
-            Tables\Columns\TextColumn::make('kategorPdrb.nama')->label('Nama Kategori'),
-            Tables\Columns\TextColumn::make('user.name')->label('Nama Pengguna'),
-            Tables\Columns\TextColumn::make('tahun')->label('Tahun'),
             Tables\Columns\TextColumn::make('deskripsi')->label('Deskripsi'),
-            Tables\Columns\TextColumn::make('url_file')->label('Link File'),
+            Tables\Columns\TextColumn::make('triwulan')->label('Periode'),
+            Tables\Columns\TextColumn::make('tahun')->label('Tahun'),
+            Tables\Columns\TextColumn::make('url_file')->label('Link')
+                ->formatStateUsing(fn() => 'Link')
+                ->color('#FF0000')
+                ->extraAttributes(['class' => 'text-blue-600 underline hover:text-blue-800 transition-colors'])
+                ->url(fn($record) => $record->url_file, true)
+                ->openUrlInNewTab(),
+            Tables\Columns\ViewColumn::make('status')
+                ->label('Status Review')
+                ->view('blade-components.columns.status-button')
+                ->viewData(fn ($record) => ['record' => $record])
         ];
     }
     private function denormalizeKategoriSp(string $string): string
@@ -60,4 +68,20 @@ class ListByKategoriReports extends Page implements HasTable
         }
         return ucwords($string);
     }
+    public function toggleStatus($id)
+    {
+        $report = ReportPdrb::findOrFail($id);
+
+        $report->status = $report->status === 'selesai' ? 'belum selesai' : 'selesai';
+        $report->save();
+
+        \Filament\Notifications\Notification::make()
+            ->title('Status diperbarui')
+            ->body("Status data diubah menjadi: {$report->status}.")
+            ->success()
+            ->send();
+
+        $this->resetTable();
+    }
+
 }

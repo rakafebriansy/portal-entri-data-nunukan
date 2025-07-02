@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->year('tahun');
             $table->text('deskripsi');
             $table->string('url_file');
-            $table->enum('role', ['belum selesai', 'selesai']);
+            $table->enum('status', ['belum selesai', 'selesai']);
             $table->timestamps();
 
             $table->foreign('kategori_sp_id')->references('id')->on('kategori_sps')->onDelete('cascade');

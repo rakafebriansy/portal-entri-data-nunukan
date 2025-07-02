@@ -1,5 +1,5 @@
 <x-filament-panels::page>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         @foreach ($kategoris as $index => $kategori)
             @php
                 $cardStyle =
@@ -19,7 +19,7 @@
                 class="rounded-xl text-white shadow border border-gray-200 gap-3 flex flex-col justify-between">
                 <div class="p-3">
                     <div class="flex items-center">
-                        <div class="flex-shrink-0 p-2 bg-blue-100 rounded-full">
+                        <div class="flex-shrink-0 p-2 rounded-full">
                             @if ($index % 3 == 0)
                                 <svg width="28" height="28" viewBox="0 0 28 28" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
