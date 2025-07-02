@@ -26,5 +26,6 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
             'role' => 'pegawai'
         ]);
+        $this->call([KategoriPdrbSeeder::class, KategoriSpSeeder::class]);
     }
 }

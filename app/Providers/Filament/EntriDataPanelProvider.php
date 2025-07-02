@@ -24,15 +24,25 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 class EntriDataPanelProvider extends PanelProvider
 {
+    private function normalizeKategoriSp(string $string): string
+    {
+        return strtolower(
+            str_replace(
+                [' - ', ' '],
+                ['-', '_'],
+                $string
+            )
+        );
+    }
     public function panel(Panel $panel): Panel
     {
         $kategoris = KategoriSp::orderBy('nama')->get();
         $spNavs = $kategoris->map(
             fn($item) =>
             NavigationItem::make($item->nama)
-                ->url("/entri-data/reports/sp/{$item->bidang}/{$item->url}")
-                ->icon('heroicon-o-link')
-                ->group(ucwords($item->bidang))
+                ->url("/entri-data/reports/sp/{$item->bidang}/{$this->normalizeKategoriSp($item->nama)}")
+                ->icon('heroicon-o-squares-2x2')
+                ->group('Statistik Produksi - ' . ucwords($item->bidang))
         )->toArray();
 
         return $panel
@@ -41,10 +51,6 @@ class EntriDataPanelProvider extends PanelProvider
             ->path('entri-data')
             ->colors([
                 'primary' => '#3B7BDB',
-            ])
-            ->navigationGroups([
-                'Statistik Produksi',
-                'PDRB',
             ])
             ->navigationItems($spNavs)
             ->discoverResources(in: app_path('Filament/EntriData/Resources'), for: 'App\\Filament\\EntriData\\Resources')

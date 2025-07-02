@@ -49,13 +49,6 @@ class KategoriSpResource extends Resource
                         ->maxLength(255),
                 ]),
                 Grid::make(2)->schema([
-                    TextInput::make('url')
-                        ->label('URL')
-                        ->unique(ignoreRecord: true)
-                        ->required()
-                        ->dehydrated(),
-                ]),
-                Grid::make(2)->schema([
                     Select::make('bidang')
                         ->label('Bidang')
                         ->options([

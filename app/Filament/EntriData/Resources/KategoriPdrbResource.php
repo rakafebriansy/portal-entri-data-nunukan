@@ -46,14 +46,6 @@ class KategoriPdrbResource extends Resource
                         ->afterStateUpdated(fn($state, \Filament\Forms\Set $set, \Filament\Forms\Get $get) => $set('url', self::formatString($state)))
                         ->maxLength(255),
                 ]),
-                Grid::make(2)->schema([
-                    TextInput::make('url')
-                        ->label('URL')
-                        ->unique(ignoreRecord: true)
-                        ->required()
-                        ->readOnly()
-                        ->dehydrated(),
-                ]),
             ]);
     }
 
