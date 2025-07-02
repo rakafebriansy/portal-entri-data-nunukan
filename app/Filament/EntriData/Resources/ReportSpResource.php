@@ -28,6 +28,7 @@ class ReportSpResource extends Resource
 
     protected static ?string $pluralLabel = 'Daftar Report Statistik Produksi';
     protected static ?string $navigationGroup = 'Kelola Report';
+
     public static function form(Form $form): Form
     {
         return $form

@@ -24,7 +24,6 @@ class ReportPdrbResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?string $label = 'Report PDRB';
-
     protected static ?string $pluralLabel = 'Daftar Report PDRB';
     protected static ?string $navigationGroup = 'Kelola Report';
 

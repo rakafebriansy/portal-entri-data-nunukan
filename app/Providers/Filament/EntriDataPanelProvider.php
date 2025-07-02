@@ -20,40 +20,19 @@ use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
-use Illuminate\Support\Str;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 class EntriDataPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
-        // $categories = collect([
-        //     [
-        //         'model' => KategoriSp::orderBy('nama')->get(),
-        //         'urlPrefix' => '/entri-data/reports/sp',
-        //     ],
-        //     [
-        //         'model' => KategoriPdrb::orderBy('nama')->get(),
-        //         'urlPrefix' => '/entri-data/reports/pdrb',
-        //     ],
-        // ]);
-
-        // $navigationItems = $categories->flatMap(function ($categoryGroup) {
-        //     return $categoryGroup['model']->map(function ($item) use ($categoryGroup) {
-        //         return NavigationItem::make($item->nama)
-        //             ->url("{$categoryGroup['urlPrefix']}/" . ($item->bidang ? "{$item->bidang}/" : '') . "{$item->url}")
-        //             ->icon('heroicon-o-link')
-        //             ->group(Str::title($item->bidang ?? 'PDRB'));
-        //     });
-        // ->toArray();
-
         $kategoris = KategoriSp::orderBy('nama')->get();
-        $navigationItems = $kategoris->map(
+        $spNavs = $kategoris->map(
             fn($item) =>
             NavigationItem::make($item->nama)
                 ->url("/entri-data/reports/sp/{$item->bidang}/{$item->url}")
                 ->icon('heroicon-o-link')
-                ->group(Str::title($item->bidang))
+                ->group(ucwords($item->bidang))
         )->toArray();
 
         return $panel
@@ -63,7 +42,11 @@ class EntriDataPanelProvider extends PanelProvider
             ->colors([
                 'primary' => '#3B7BDB',
             ])
-            ->navigationItems($navigationItems)
+            ->navigationGroups([
+                'Statistik Produksi',
+                'PDRB',
+            ])
+            ->navigationItems($spNavs)
             ->discoverResources(in: app_path('Filament/EntriData/Resources'), for: 'App\\Filament\\EntriData\\Resources')
             ->discoverPages(in: app_path('Filament/EntriData/Pages'), for: 'App\\Filament\\EntriData\\Pages')
             ->pages([
