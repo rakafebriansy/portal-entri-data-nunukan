@@ -6,10 +6,16 @@ use App\Models\KategoriPdrb;
 use Filament\Facades\Filament;
 use Filament\Pages\Page;
 use Illuminate\Database\Eloquent\Collection;
+use Livewire\WithPagination;
+use Livewire\Attributes\Reactive;
 
 class PDRB extends Page
 {
+    use WithPagination;
     public Collection $kategoris;
+
+
+    public string $search = '';
     protected static ?string $navigationIcon = 'heroicon-o-squares-2x2';
     protected static ?string $navigationGroup = 'PDRB';
 
@@ -33,6 +39,10 @@ class PDRB extends Page
         $kategoris = KategoriPdrb::all();
         $this->kategoris = $kategoris;
     }
+    public static function shouldRegisterNavigation(): bool
+    {
+        return Filament::auth()->user()?->role === 'pegawai';
+    }
     private function normalizeKategoriSp(string $string): string
     {
         return strtolower(
@@ -43,8 +53,15 @@ class PDRB extends Page
             )
         );
     }
-    public static function shouldRegisterNavigation(): bool
+    public function getFilteredKategorisProperty()
     {
-        return Filament::auth()->user()?->role === 'pegawai';
+        return KategoriPdrb::query()
+            ->when(
+                $this->search,
+                fn($query) =>
+                $query->where('nama', 'like', '%' . $this->search . '%')
+                    // ->orWhere('deskripsi', 'like', '%' . $this->search . '%')
+            )
+            ->get();
     }
 }
