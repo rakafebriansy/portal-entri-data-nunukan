@@ -71,29 +71,30 @@ class ReportSpResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('tahun')
-                    ->label('Tahun')
-                    ->sortable()
-                    ->searchable(),
-
-                TextColumn::make('deskripsi')
-                    ->label('Deskripsi')
-                    ->limit(50)
-                    ->wrap(),
-
-                TextColumn::make('url_file')
-                    ->label('Link File')
-                    ->url(fn($record) => $record->url_file, true)
-                    ->openUrlInNewTab(),
-                TextColumn::make('user.name')
-                    ->label('Pengguna')
-                    ->sortable()
-                    ->searchable(),
-
                 TextColumn::make('kategoriSp.nama')
                     ->label('Kategori')
                     ->sortable()
                     ->searchable(),
+                TextColumn::make('deskripsi')
+                    ->label('Deskripsi')
+                    ->limit(50)
+                    ->wrap(),
+                TextColumn::make('tahun')
+                    ->label('Tahun')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('url_file')->label('Link')
+                    ->formatStateUsing(fn() => 'Link')
+                    ->color('#FF0000')
+                    ->extraAttributes(['class' => 'text-blue-600 underline hover:text-blue-800 transition-colors'])
+                    ->url(fn($record) => $record->url_file, true)
+                    ->openUrlInNewTab(),
+
+                Tables\Columns\ViewColumn::make('status')
+                    ->label('Status Review')
+                    ->searchable()
+                    ->view('blade-components.columns.status-button')
+                    ->viewData(fn($record) => ['record' => $record])
             ])
             ->filters([
                 //

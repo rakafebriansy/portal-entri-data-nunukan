@@ -8,6 +8,7 @@ use Filament\Pages\Page;
 use Filament\Tables;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Concerns\InteractsWithTable;
+use Filament\Tables\Filters\SelectFilter;
 
 class ListByKategoriReports extends Page implements HasTable
 {
@@ -45,8 +46,8 @@ class ListByKategoriReports extends Page implements HasTable
     {
         return [
             Tables\Columns\TextColumn::make('deskripsi')->label('Deskripsi'),
-            Tables\Columns\TextColumn::make('triwulan')->label('Periode'),
-            Tables\Columns\TextColumn::make('tahun')->label('Tahun'),
+            Tables\Columns\TextColumn::make('triwulan')->label('Periode')->sortable(),
+            Tables\Columns\TextColumn::make('tahun')->label('Tahun')->searchable()->sortable(),
             Tables\Columns\TextColumn::make('url_file')->label('Link')
                 ->formatStateUsing(fn() => 'Link')
                 ->color('#FF0000')
@@ -55,10 +56,35 @@ class ListByKategoriReports extends Page implements HasTable
                 ->openUrlInNewTab(),
             Tables\Columns\ViewColumn::make('status')
                 ->label('Status Review')
+                ->searchable()
                 ->view('blade-components.columns.status-button')
-                ->viewData(fn ($record) => ['record' => $record])
+                ->viewData(fn($record) => ['record' => $record])
         ];
     }
+    protected function getTableFilters(): array
+    {
+        return [
+            SelectFilter::make('status')
+                ->label('Status Review')
+                ->options([
+                    'selesai' => 'Selesai',
+                    'belum selesai' => 'Belum Selesai',
+                ]),
+
+            SelectFilter::make('tahun')
+                ->label('Tahun')
+                ->options(
+                    fn() =>
+                    \App\Models\ReportSp::query()
+                        ->select('tahun')
+                        ->distinct()
+                        ->orderBy('tahun', 'desc')
+                        ->pluck('tahun', 'tahun')
+                        ->toArray()
+                ),
+        ];
+    }
+
     private function denormalizeKategoriSp(string $string): string
     {
         $string = str_replace('_', ' ', $string);

@@ -15,6 +15,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -79,19 +80,44 @@ class ReportPdrbResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('kategoriPdrb.nama')
+                    ->label('Kategori')
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('deskripsi')->label('Deskripsi'),
-                Tables\Columns\TextColumn::make('triwulan')->label('Periode'),
-                Tables\Columns\TextColumn::make('tahun')->label('Tahun'),
+                Tables\Columns\TextColumn::make('triwulan')->label('Periode')->sortable(),
+                Tables\Columns\TextColumn::make('tahun')->label('Tahun')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('url_file')->label('Link')
                     ->formatStateUsing(fn() => 'Link')
                     ->color('#FF0000')
                     ->extraAttributes(['class' => 'text-blue-600 underline hover:text-blue-800 transition-colors'])
                     ->url(fn($record) => $record->url_file, true)
                     ->openUrlInNewTab(),
-                Tables\Columns\TextColumn::make('status')->label('Status Review'),
+                Tables\Columns\ViewColumn::make('status')
+                    ->label('Status Review')
+                    ->searchable()
+                    ->view('blade-components.columns.status-button')
+                    ->viewData(fn($record) => ['record' => $record])
             ])
             ->filters([
-                //
+                SelectFilter::make('status')
+                    ->label('Status Review')
+                    ->options([
+                        'selesai' => 'Selesai',
+                        'belum selesai' => 'Belum Selesai',
+                    ]),
+
+                SelectFilter::make('tahun')
+                    ->label('Tahun')
+                    ->options(
+                        fn() =>
+                        \App\Models\ReportSp::query()
+                            ->select('tahun')
+                            ->distinct()
+                            ->orderBy('tahun', 'desc')
+                            ->pluck('tahun', 'tahun')
+                            ->toArray()
+                    ),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
