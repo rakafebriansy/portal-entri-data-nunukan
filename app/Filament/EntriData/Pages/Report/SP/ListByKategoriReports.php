@@ -4,6 +4,8 @@ namespace App\Filament\EntriData\Pages\Report\SP;
 
 use App\Models\KategoriSp;
 use App\Models\ReportSp;
+use App\Models\User;
+use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 
 class ListByKategoriReports extends Page
@@ -73,11 +75,19 @@ class ListByKategoriReports extends Page
         $report->status = $report->status === 'selesai' ? 'belum selesai' : 'selesai';
         $report->save();
 
-        \Filament\Notifications\Notification::make()
+        $actor = auth()->user();
+        $recipients = User::where('role', 'admin')->get();
+
+        Notification::make()
             ->title('Status diperbarui')
             ->body("Status data diubah menjadi: {$report->status}.")
             ->success()
             ->send();
+        Notification::make()
+            ->title('Status diperbarui oleh ' . $actor->name)
+            ->body("Status data diubah menjadi: {$report->status}.")
+            ->success()
+            ->sendToDatabase($recipients);
 
         $this->reportSps = ReportSp::all();
     }

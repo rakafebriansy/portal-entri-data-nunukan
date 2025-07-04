@@ -8,6 +8,7 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\MenuItem;
 use Filament\Navigation\NavigationGroup;
 use Filament\Navigation\NavigationItem;
 use Filament\Pages;
@@ -57,6 +58,14 @@ class EntriDataPanelProvider extends PanelProvider
             ])
             ->navigationItems($spNavs)
             ->databaseNotifications()
+                        ->userMenuItems([
+                MenuItem::make()->label('Butuh Bantuan?')
+                    ->url("#")
+                    ->icon('heroicon-o-cog-6-tooth'),
+                MenuItem::make()->label('Tentang Kami')
+                    ->url("#")
+                    ->icon('heroicon-o-information-circle'),
+            ])
             ->discoverResources(in: app_path('Filament/EntriData/Resources'), for: 'App\\Filament\\EntriData\\Resources')
             ->discoverPages(in: app_path('Filament/EntriData/Pages'), for: 'App\\Filament\\EntriData\\Pages')
             ->pages([

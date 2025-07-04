@@ -4,6 +4,8 @@ namespace App\Filament\EntriData\Pages\Report\PDRB;
 
 use App\Models\KategoriPdrb;
 use App\Models\ReportPdrb;
+use App\Models\User;
+use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Filament\Tables;
 use Filament\Tables\Contracts\HasTable;
@@ -101,11 +103,19 @@ class ListByKategoriReports extends Page implements HasTable
         $report->status = $report->status === 'selesai' ? 'belum selesai' : 'selesai';
         $report->save();
 
-        \Filament\Notifications\Notification::make()
+        $actor = auth()->user();
+        $recipients = User::where('role', 'admin')->get();
+
+        Notification::make()
             ->title('Status diperbarui')
             ->body("Status data diubah menjadi: {$report->status}.")
             ->success()
             ->send();
+        Notification::make()
+            ->title('Status diperbarui oleh ' . $actor->name)
+            ->body("Status data diubah menjadi: {$report->status}.")
+            ->success()
+            ->sendToDatabase($recipients);
 
         $this->resetTable();
     }
