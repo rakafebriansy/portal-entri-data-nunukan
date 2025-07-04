@@ -146,6 +146,6 @@ class ReportPdrbResource extends Resource
     }
     public static function shouldRegisterNavigation(): bool
     {
-        return \Filament\Facades\Filament::auth()->user()?->role === 'pegawai';
+        return \Filament\Facades\Filament::auth()->user()?->role === 'admin';
     }
 }

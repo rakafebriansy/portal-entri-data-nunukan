@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('kategori_pdrb_id');
             $table->unsignedBigInteger('user_id');
             $table->year('tahun');
-            $table->text('deskripsi');
+            $table->string('deskripsi',255)->nullable()->unique();
             $table->string('url_file');
             $table->enum('triwulan',[1,2,3,4]);
             $table->enum('status',['belum selesai','selesai']);

@@ -59,9 +59,9 @@
             @endphp
             <div style="{{ $cardStyle }} overflow:hidden;"
                 class="rounded-xl text-white shadow border border-gray-200 gap-3 flex flex-col justify-between">
-                <div class="p-3">
-                    <div class="flex items-center">
-                        <div class="flex-shrink-0 p-2 rounded-full">
+                <div class="p-6 flex flex-col gap-2">
+                    <div class="flex items-center gap-2">
+                        <div class="flex-shrink-0 rounded-full">
                             @if ($index % 3 == 0)
                                 <svg width="28" height="28" viewBox="0 0 28 28" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -114,7 +114,7 @@
                     </div>
 
                     <div style="height: 4rem; overflow-y: autoo;">
-                        <p class="mt-2 text-sm">Deskripsi: {{ $kategori->deskripsi ?? 'Tidak Ada' }}</p>
+                        <p class="mt-2 text-sm">{{ $kategori->deskripsi ?? 'Tidak Ada Deskripsi' }}</p>
                     </div>
                 </div>
 

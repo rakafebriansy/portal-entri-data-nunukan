@@ -14,34 +14,44 @@ class KategoriPdrbSeeder extends Seeder
     public function run(): void
     {
         KategoriPdrb::create([
-            'nama' => 'Pendidikan'
+            'nama' => 'Pendidikan',
+            'deskripsi' => 'Dinas Pendidikan Kabupaten Nunukan',
         ]);
         KategoriPdrb::create([
-            'nama' => 'Pangan dan Pertanian'
+            'nama' => 'Pangan dan Pertanian',
+            'deskripsi' => 'Dinas Ketahanan Pangan dan dan Pertanian Kabupaten Nunukan',
         ]);
         KategoriPdrb::create([
-            'nama' => 'Budaya dan Olahraga'
+            'nama' => 'Budaya dan Olahraga',
+            'deskripsi' => 'Dinas Kebudayaan Kepemudaan dan Olahraga serta Pariwisata Kabupaten Nunukan',
         ]);
         KategoriPdrb::create([
-            'nama' => 'Kelautan dan Perikanan'
+            'nama' => 'Kelautan dan Perikanan',
+            'deskripsi' => 'Dinas Kelautan dan Perikanan Kabupaten Nunukan',
         ]);
         KategoriPdrb::create([
-            'nama' => 'Pekerjaan dan Penataan'
+            'nama' => 'Pekerjaan dan Penataan',
+            'deskripsi' => 'Dinas Pekerjaan Umum dan Penataan Ruang Kabupaten Ruang',
         ]);
         KategoriPdrb::create([
-            'nama' => 'Perhubungan'
+            'nama' => 'Perhubungan',
+            'deskripsi' => 'Dinas Perhubungan Kabupaten Nunukan',
         ]);
         KategoriPdrb::create([
-            'nama' => 'Air Minum'
+            'nama' => 'Air Minum',
+            'deskripsi' => 'Perumda Air Minum Tirta Taka Kabupaten Nunukan',
         ]);
         KategoriPdrb::create([
-            'nama' => 'Bapenda'
+            'nama' => 'Bapenda',
+            'deskripsi' => 'UPTD Bapenda Kelas A Wilayah Nunukan',
         ]);
         KategoriPdrb::create([
-            'nama' => 'Perdagangan'
+            'nama' => 'Perdagangan',
+            'deskripsi' => 'Dinas Koperasi, UMKM, Perdagangan, dan Perindustrian Kabupaten Nunukan',
         ]);
         KategoriPdrb::create([
-            'nama' => 'Keuangan dan Aset'
+            'nama' => 'Keuangan dan Aset',
+            'deskripsi' => 'Badan Pengelolaan Keuangan dan Aset Daerah  (BPKAD) Kabupaten Nunukan',
         ]);
     }
 }
