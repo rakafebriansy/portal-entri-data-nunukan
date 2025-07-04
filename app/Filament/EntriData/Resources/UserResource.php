@@ -6,12 +6,14 @@ use App\Filament\EntriData\Resources\UserResource\Pages;
 use App\Filament\EntriData\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\BadgeColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class UserResource extends Resource
 {
@@ -23,15 +25,45 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                //
+                TextInput::make('name')
+                    ->required()
+                    ->maxLength(255),
+
+                TextInput::make('email')
+                    ->email()
+                    ->required()
+                    ->unique(ignoreRecord: true),
+
+                TextInput::make('password')
+                    ->password()
+                    ->revealable()
+                    ->required(fn(string $context) => $context === 'create')
+                    ->dehydrated(fn($state) => filled($state))
+                    ->dehydrateStateUsing(fn($state) => bcrypt($state))
+                    ->maxLength(255),
+
+                Select::make('role')
+                    ->required()
+                    ->options([
+                        'pegawai' => 'Pegawai',
+                        'admin' => 'Admin',
+                    ]),
             ]);
+
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('name')->searchable()->sortable(),
+                TextColumn::make('email')->searchable()->sortable(),
+                BadgeColumn::make('role')
+                    ->colors([
+                        'success' => 'admin',
+                        'warning' => 'pegawai',
+                    ])
+                    ->label('Role'),
             ])
             ->filters([
                 //
@@ -61,7 +93,7 @@ class UserResource extends Resource
             'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
     }
-        public static function shouldRegisterNavigation(): bool
+    public static function shouldRegisterNavigation(): bool
     {
         return \Filament\Facades\Filament::auth()->user()?->role === 'admin';
     }
