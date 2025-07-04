@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama')->unique();
             $table->enum('bidang',['pertanian','peternakan']);
+            $table->text('deskripsi')->nullable();
             $table->timestamps();
         });
     }

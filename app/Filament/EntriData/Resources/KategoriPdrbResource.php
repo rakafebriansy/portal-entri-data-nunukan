@@ -6,6 +6,7 @@ use App\Filament\EntriData\Resources\KategoriPdrbResource\Pages;
 use App\Filament\EntriData\Resources\KategoriPdrbResource\RelationManagers;
 use App\Models\KategoriPdrb;
 use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -37,10 +38,12 @@ class KategoriPdrbResource extends Resource
                     TextInput::make('nama')
                         ->label('Nama Kategori')
                         ->required()
-                        ->reactive()
                         ->unique(ignoreRecord: true)
-                        ->live(onBlur: true)
-                        ->afterStateUpdated(fn($state, \Filament\Forms\Set $set, \Filament\Forms\Get $get) => $set('url', self::formatString($state)))
+                        ->maxLength(255),
+                ]),
+                Grid::make(2)->schema([
+                    Textarea::make('deskripsi')
+                        ->label('Deskripsi')
                         ->maxLength(255),
                 ]),
             ]);
@@ -57,6 +60,7 @@ class KategoriPdrbResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])

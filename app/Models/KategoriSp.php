@@ -8,7 +8,8 @@ class KategoriSp extends Model
 {
     protected $fillable = [
         'nama',
-        'bidang'
+        'bidang',
+        'deskripsi',
     ];
 
     public function reportSps()

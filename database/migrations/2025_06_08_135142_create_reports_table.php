@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('kategori_sp_id');
             $table->unsignedBigInteger('user_id');
             $table->year('tahun');
-            $table->string('deskripsi',255)->nullable()->unique();
+            $table->string('deskripsi',255)->unique();
             $table->string('url_file');
             $table->enum('status', ['belum selesai', 'selesai']);
             $table->timestamps();

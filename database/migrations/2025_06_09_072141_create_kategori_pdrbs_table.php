@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('kategori_pdrbs', function (Blueprint $table) {
             $table->id();
             $table->string('nama')->unique();
-            $table->text('deskripsi');
+            $table->text('deskripsi')->nullable();
             $table->timestamps();
         });
     }

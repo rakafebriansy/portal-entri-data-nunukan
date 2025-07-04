@@ -8,6 +8,7 @@ use App\Models\KategoriSp;
 use Filament\Forms;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -42,13 +43,8 @@ class KategoriSpResource extends Resource
                     TextInput::make('nama')
                         ->label('Nama Kategori')
                         ->required()
-                        ->reactive() 
                         ->unique(ignoreRecord: true)
-                        ->live(onBlur: true)
-                        ->afterStateUpdated(fn($state, \Filament\Forms\Set $set, \Filament\Forms\Get $get) => $set('url', self::formatString($state)))
                         ->maxLength(255),
-                ]),
-                Grid::make(2)->schema([
                     Select::make('bidang')
                         ->label('Bidang')
                         ->options([
@@ -56,6 +52,11 @@ class KategoriSpResource extends Resource
                             'pertanian' => 'Pertanian',
                         ])
                         ->required(),
+                ]),
+                Grid::make(2)->schema([
+                    Textarea::make('deskripsi')
+                        ->label('Deskripsi')
+                        ->maxLength(255),
                 ]),
             ]);
     }
@@ -72,6 +73,7 @@ class KategoriSpResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
