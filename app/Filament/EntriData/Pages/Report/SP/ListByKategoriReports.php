@@ -30,7 +30,6 @@ class ListByKategoriReports extends Page
 
     public function mount(string $bidang, string $url): void
     {
-
         $kategori = KategoriSp::where('bidang', $bidang)->where('nama', $this->denormalizeKategoriSp($url))->first();
         $this->kategori = $kategori;
     }

@@ -43,6 +43,8 @@ class EntriDataPanelProvider extends PanelProvider
                 ->url("/entri-data/reports/sp/{$item->bidang}/{$this->normalizeKategoriSp($item->nama)}")
                 ->icon('heroicon-o-squares-2x2')
                 ->group('Statistik Produksi - ' . ucwords($item->bidang))
+                ->visible(fn(): bool => auth()->user()?->role == 'pegawai')
+                ->hidden(fn(): bool => !auth()->user()?->role == 'admin')
         )->toArray();
 
         return $panel
@@ -54,6 +56,7 @@ class EntriDataPanelProvider extends PanelProvider
                 'primary' => '#3B7BDB',
             ])
             ->navigationItems($spNavs)
+            ->databaseNotifications()
             ->discoverResources(in: app_path('Filament/EntriData/Resources'), for: 'App\\Filament\\EntriData\\Resources')
             ->discoverPages(in: app_path('Filament/EntriData/Pages'), for: 'App\\Filament\\EntriData\\Pages')
             ->pages([
@@ -83,7 +86,6 @@ class EntriDataPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->viteTheme('resources/css/filament/entri-data/theme.css')
-            ;
+            ->viteTheme('resources/css/filament/entri-data/theme.css');
     }
 }

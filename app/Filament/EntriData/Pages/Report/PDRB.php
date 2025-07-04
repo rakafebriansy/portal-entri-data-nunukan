@@ -3,6 +3,7 @@
 namespace App\Filament\EntriData\Pages\Report;
 
 use App\Models\KategoriPdrb;
+use Filament\Facades\Filament;
 use Filament\Pages\Page;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -41,5 +42,9 @@ class PDRB extends Page
                 $string
             )
         );
+    }
+    public static function shouldRegisterNavigation(): bool
+    {
+        return Filament::auth()->user()?->role === 'pegawai';
     }
 }

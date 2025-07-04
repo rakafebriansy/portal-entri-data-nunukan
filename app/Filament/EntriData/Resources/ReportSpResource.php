@@ -70,6 +70,7 @@ class ReportSpResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->recordUrl(null)
             ->columns([
                 TextColumn::make('kategoriSp.nama')
                     ->label('Kategori')
@@ -122,5 +123,9 @@ class ReportSpResource extends Resource
             'create' => Pages\CreateReportSp::route('/create'),
             'edit' => Pages\EditReportSp::route('/{record}/edit'),
         ];
+    }
+    public static function shouldRegisterNavigation(): bool
+    {
+        return \Filament\Facades\Filament::auth()->user()?->role === 'admin';
     }
 }

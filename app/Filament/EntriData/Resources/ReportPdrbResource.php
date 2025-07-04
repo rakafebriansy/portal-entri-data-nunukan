@@ -79,6 +79,7 @@ class ReportPdrbResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->recordUrl(null)
             ->columns([
                 TextColumn::make('kategoriPdrb.nama')
                     ->label('Kategori')
@@ -142,5 +143,9 @@ class ReportPdrbResource extends Resource
             'create' => Pages\CreateReportPdrb::route('/create'),
             'edit' => Pages\EditReportPdrb::route('/{record}/edit'),
         ];
+    }
+    public static function shouldRegisterNavigation(): bool
+    {
+        return \Filament\Facades\Filament::auth()->user()?->role === 'pegawai';
     }
 }

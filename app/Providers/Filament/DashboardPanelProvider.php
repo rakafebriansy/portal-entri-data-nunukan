@@ -33,7 +33,7 @@ class DashboardPanelProvider extends PanelProvider
             ->id('dashboard')
             ->brandName('Dashboard Penta')
             ->path('dashboard')
-            // ->login()
+            ->databaseNotifications()
             ->colors([
                 'primary' => 'rgb(59, 123, 219)',
             ])
@@ -64,6 +64,7 @@ class DashboardPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->viteTheme('resources/css/filament/entri-data/theme.css');
     }
 }

@@ -5,7 +5,6 @@ namespace App\Filament\EntriData\Resources;
 use App\Filament\EntriData\Resources\KategoriPdrbResource\Pages;
 use App\Filament\EntriData\Resources\KategoriPdrbResource\RelationManagers;
 use App\Models\KategoriPdrb;
-use Filament\Forms;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -13,8 +12,6 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class KategoriPdrbResource extends Resource
 {
@@ -84,5 +81,10 @@ class KategoriPdrbResource extends Resource
             'create' => Pages\CreateKategoriPdrb::route('/create'),
             'edit' => Pages\EditKategoriPdrb::route('/{record}/edit'),
         ];
+    }
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return \Filament\Facades\Filament::auth()->user()?->role === 'admin';
     }
 }

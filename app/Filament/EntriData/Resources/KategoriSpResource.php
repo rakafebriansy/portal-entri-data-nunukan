@@ -97,4 +97,8 @@ class KategoriSpResource extends Resource
             'edit' => Pages\EditKategoriSp::route('/{record}/edit'),
         ];
     }
+    public static function shouldRegisterNavigation(): bool
+    {
+        return \Filament\Facades\Filament::auth()->user()?->role === 'admin';
+    }
 }
