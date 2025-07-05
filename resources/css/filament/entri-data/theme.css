@@ -12,3 +12,7 @@
 .fi-sidebar-item-active > a, .fi-sidebar-item:hover > a {
     background-color: #356fc5 !important;
 }
+#hubungi-kami:hover {
+    color: #3B7BDB;
+    text-decoration: underline;
+}

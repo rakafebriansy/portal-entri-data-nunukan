@@ -58,14 +58,14 @@ class EntriDataPanelProvider extends PanelProvider
             ])
             ->navigationItems($spNavs)
             ->databaseNotifications()
-                        ->userMenuItems([
-                MenuItem::make()->label('Butuh Bantuan?')
-                    ->url("#")
-                    ->icon('heroicon-o-cog-6-tooth'),
-                MenuItem::make()->label('Tentang Kami')
-                    ->url("#")
-                    ->icon('heroicon-o-information-circle'),
-            ])
+            // ->userMenuItems([
+            //     MenuItem::make()->label('Butuh Bantuan?')
+            //         ->url("#")
+            //         ->icon('heroicon-o-cog-6-tooth'),
+            //     MenuItem::make()->label('Tentang Kami')
+            //         ->url("#")
+            //         ->icon('heroicon-o-information-circle'),
+            // ])
             ->discoverResources(in: app_path('Filament/EntriData/Resources'), for: 'App\\Filament\\EntriData\\Resources')
             ->discoverPages(in: app_path('Filament/EntriData/Pages'), for: 'App\\Filament\\EntriData\\Pages')
             ->pages([

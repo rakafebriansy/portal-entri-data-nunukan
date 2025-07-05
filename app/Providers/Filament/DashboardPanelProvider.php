@@ -39,14 +39,14 @@ class DashboardPanelProvider extends PanelProvider
             ->colors([
                 'primary' => 'rgb(59, 123, 219)',
             ])
-            ->userMenuItems([
-                MenuItem::make()->label('Butuh Bantuan?')
-                    ->url("#")
-                    ->icon('heroicon-o-cog-6-tooth'),
-                MenuItem::make()->label('Tentang Kami')
-                    ->url("#")
-                    ->icon('heroicon-o-information-circle'),
-            ])
+            // ->userMenuItems([
+            //     MenuItem::make()->label('Butuh Bantuan?')
+            //         ->url("#")
+            //         ->icon('heroicon-o-cog-6-tooth'),
+            //     MenuItem::make()->label('Tentang Kami')
+            //         ->url("#")
+            //         ->icon('heroicon-o-information-circle'),
+            // ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
