@@ -54,12 +54,12 @@ class KategoriSpResource extends Resource
                         ->required(),
                 ]),
                 Grid::make(2)->schema([
-                    Select::make('periode')
-                        ->label('Periode')
+                    Select::make('jenis_periode')
+                        ->label('Jenis Periode')
                         ->options([
-                            'Bulanan' => 'Bulanan',
-                            'Triwulan' => 'Triwulan',
-                            'Tahunan' => 'Tahunan',
+                            'bulanan' => 'Bulanan',
+                            'triwulan' => 'Triwulan',
+                            'tahunan' => 'Tahunan',
                         ])
                         ->required(),
                     Textarea::make('deskripsi')

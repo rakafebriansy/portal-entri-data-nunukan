@@ -10,6 +10,7 @@ class KategoriSp extends Model
         'nama',
         'bidang',
         'deskripsi',
+        'jenis_periode'
     ];
 
     public function reportSps()

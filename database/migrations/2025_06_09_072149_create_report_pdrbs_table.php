@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('kategori_pdrb_id');
             $table->unsignedBigInteger('user_id');
             $table->year('tahun');
-            $table->string('deskripsi', 255)->unique();
+            $table->string('deskripsi', 255);
             $table->string('url_file');
             $table->enum('periode', ['Triwulan 1', 'Triwulan 2', 'Triwulan 3', 'Triwulan 4']);
             $table->enum('status', ['belum selesai', 'selesai']);
