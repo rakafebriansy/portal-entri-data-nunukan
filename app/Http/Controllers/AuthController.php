@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+
     public function showLoginForm()
     {
-        return view('pages.dashboard.login', [
+        return view('pages.login', [
             'title' => 'Penta | Login'
         ]);
     }
@@ -24,7 +24,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect('/dashboard');
+            return redirect('/landing');
         }
 
         return back()->with(

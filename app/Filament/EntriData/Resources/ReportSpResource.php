@@ -47,22 +47,61 @@ class ReportSpResource extends Resource
                     Hidden::make('user_id')
                         ->default(auth()->id())
                         ->required(),
-                    Textarea::make('deskripsi')
-                        ->label('Deskripsi')
-                        ->rows(5)
-                        ->placeholder('Masukkan deskripsi di sini...')
-                        ->required(),
                     Select::make('kategori_sp_id')
                         ->label('Kategori')
                         ->relationship('kategoriSp', 'nama')
                         ->searchable()
                         ->preload()
+                        ->reactive()
                         ->required(),
                     TextInput::make('url_file')
                         ->label('Link File')
                         ->placeholder('Contoh: https://example.com')
                         ->url()
-                        ->required()
+                        ->required(),
+                    Select::make('periode')
+                        ->label('Periode')
+                        ->options(function (callable $get) {
+                            $kategori = \App\Models\KategoriSp::find($get('kategori_sp_id'));
+
+                            $jenis = $kategori?->jenis_periode;
+
+                            return match ($jenis) {
+                                'bulanan' => [
+                                    'Januari' => 'Januari',
+                                    'Februari' => 'Februari',
+                                    'Maret' => 'Maret',
+                                    'April' => 'April',
+                                    'Mei' => 'Mei',
+                                    'Juni' => 'Juni',
+                                    'Juli' => 'Juli',
+                                    'Agustus' => 'Agustus',
+                                    'September' => 'September',
+                                    'Oktober' => 'Oktober',
+                                    'November' => 'November',
+                                    'Desember' => 'Desember',
+                                ],
+                                'triwulan' => [
+                                    'Triwulan 1' => 'Triwulan 1',
+                                    'Triwulan 2' => 'Triwulan 2',
+                                    'Triwulan 3' => 'Triwulan 3',
+                                    'Triwulan 4' => 'Triwulan 4',
+                                ],
+                                'tahunan' => [
+                                    'Tahunan' => 'Tahunan',
+                                ],
+                                default => [],
+                            };
+                        })
+                        ->helperText('Pilih kategori terlebih dahulu')
+                        ->placeholder('Pilih periode')
+                        ->reactive()
+                        ->required(),
+                    Textarea::make('deskripsi')
+                        ->label('Deskripsi')
+                        ->rows(5)
+                        ->placeholder('Masukkan deskripsi di sini...')
+                        ->required(),
                 ]),
             ]);
     }
@@ -80,22 +119,22 @@ class ReportSpResource extends Resource
                     ->label('Deskripsi')
                     ->limit(50)
                     ->wrap(),
+                TextColumn::make('periode')
+                    ->label('Periode')
+                    ->sortable(),
                 TextColumn::make('tahun')
                     ->label('Tahun')
-                    ->sortable()
-                    ->searchable(),
-                TextColumn::make('url_file')->label('Link')
-                    ->formatStateUsing(fn() => 'Link')
-                    ->color('#FF0000')
-                    ->extraAttributes(['class' => 'text-blue-600 underline hover:text-blue-800 transition-colors'])
-                    ->url(fn($record) => $record->url_file, true)
-                    ->openUrlInNewTab(),
-
+                    ->sortable(),
+                TextColumn::make('url_file')->label('Kuesioner')
+                    ->view('blade-components.columns.link-button')
+                    ->viewData(fn($record) => ['record' => $record]),
                 Tables\Columns\ViewColumn::make('status')
                     ->label('Status Review')
                     ->searchable()
                     ->view('blade-components.columns.status-button')
-                    ->viewData(fn($record) => ['record' => $record])
+                    ->viewData(fn($record) => ['record' => $record]),
+                TextColumn::make('remind')->label('Pengingat')
+                    ->view('blade-components.columns.remind-button'),
             ])
             ->filters([
                 //

@@ -15,8 +15,9 @@ return new class extends Migration {
             $table->unsignedBigInteger('kategori_sp_id');
             $table->unsignedBigInteger('user_id');
             $table->year('tahun');
-            $table->string('deskripsi',255)->unique();
+            $table->string('deskripsi', 255)->unique();
             $table->string('url_file');
+            $table->enum('periode', ['Triwulan 1', 'Triwulan 2', 'Triwulan 3', 'Triwulan 4', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember', 'Tahunan']);
             $table->enum('status', ['belum selesai', 'selesai']);
             $table->timestamps();
 

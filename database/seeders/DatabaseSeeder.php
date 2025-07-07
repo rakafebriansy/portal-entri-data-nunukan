@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Raka',
             'email' => 'raka@example.com',
             'password' => Hash::make('password'),
-            'role' => 'pegawai'
+            'role' => 'pengentri'
         ]);
         $this->call([KategoriPdrbSeeder::class, KategoriSpSeeder::class]);
     }

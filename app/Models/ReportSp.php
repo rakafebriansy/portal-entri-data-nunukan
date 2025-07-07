@@ -13,6 +13,7 @@ class ReportSp extends Model
         'deskripsi',
         'url_file',
         'status',
+        'periode',
     ];
     public function kategoriSp()
     {

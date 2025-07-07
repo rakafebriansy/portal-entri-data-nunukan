@@ -44,7 +44,7 @@ class EntriDataPanelProvider extends PanelProvider
                 ->url("/entri-data/reports/sp/{$item->bidang}/{$this->normalizeKategoriSp($item->nama)}")
                 ->icon('heroicon-o-squares-2x2')
                 ->group('Statistik Produksi - ' . ucwords($item->bidang))
-                ->visible(fn(): bool => auth()->user()?->role == 'pegawai')
+                ->visible(fn(): bool => auth()->user()?->role == 'pengentri')
                 ->hidden(fn(): bool => !auth()->user()?->role == 'admin')
         )->toArray();
 
@@ -57,15 +57,11 @@ class EntriDataPanelProvider extends PanelProvider
                 'primary' => '#3B7BDB',
             ])
             ->navigationItems($spNavs)
+            ->userMenuItems([
+                MenuItem::make()->url('/landing')->label('Kembali ke Menu')->icon('heroicon-o-arrow-left-circle')
+            ])
             ->databaseNotifications()
-            // ->userMenuItems([
-            //     MenuItem::make()->label('Butuh Bantuan?')
-            //         ->url("#")
-            //         ->icon('heroicon-o-cog-6-tooth'),
-            //     MenuItem::make()->label('Tentang Kami')
-            //         ->url("#")
-            //         ->icon('heroicon-o-information-circle'),
-            // ])
+            ->sidebarCollapsibleOnDesktop(true)
             ->discoverResources(in: app_path('Filament/EntriData/Resources'), for: 'App\\Filament\\EntriData\\Resources')
             ->discoverPages(in: app_path('Filament/EntriData/Pages'), for: 'App\\Filament\\EntriData\\Pages')
             ->pages([

@@ -45,7 +45,7 @@ class UserResource extends Resource
                 Select::make('role')
                     ->required()
                     ->options([
-                        'pegawai' => 'Pegawai',
+                        'pengentri' => 'Pengentri',
                         'admin' => 'Admin',
                     ]),
             ]);
@@ -61,7 +61,7 @@ class UserResource extends Resource
                 BadgeColumn::make('role')
                     ->colors([
                         'success' => 'admin',
-                        'warning' => 'pegawai',
+                        'warning' => 'pengentri',
                     ])
                     ->label('Role'),
             ])

@@ -1,5 +1,4 @@
 <div class="relative inline-block px-3 py-3.5">
-    {{-- Tombol normal: tampil jika tidak loading --}}
     <button
         wire:click="toggleStatus({{ $record->id }})"
         wire:loading.remove

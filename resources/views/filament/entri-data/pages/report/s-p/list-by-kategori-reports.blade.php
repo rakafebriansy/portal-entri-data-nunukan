@@ -1,4 +1,4 @@
-<x-filament::page>
+{{-- <x-filament::page>
     <div class="flex flex-col gap-6">
         @forelse ($reportSps as $reportSp)
             <div class="bg-white rounded-xl justify-between flex p-5 shadow border items-center">
@@ -44,4 +44,8 @@
             </div>
         @endforelse
     </div>
+</x-filament::page> --}}
+
+<x-filament::page>
+    {{ $this->table }}
 </x-filament::page>

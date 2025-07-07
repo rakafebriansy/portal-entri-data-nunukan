@@ -41,7 +41,7 @@ class PDRB extends Page
     }
     public static function shouldRegisterNavigation(): bool
     {
-        return Filament::auth()->user()?->role === 'pegawai';
+        return Filament::auth()->user()?->role === 'pengentri';
     }
     private function normalizeKategoriSp(string $string): string
     {

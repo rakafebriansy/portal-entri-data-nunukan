@@ -13,7 +13,7 @@ class ReportPdrb extends Model
         'deskripsi',
         'url_file',
         'status',
-        'triwulan',
+        'periode',
     ];
     public function kategoriPdrb()
     {

@@ -41,21 +41,18 @@ class ListByKategoriReports extends Page implements HasTable
 
     protected function getTableQuery()
     {
-        return ReportPdrb::where('kategori_pdrb_id', $this->kategori->id)->orderBy('tahun')->orderBy('triwulan');
+        return ReportPdrb::where('kategori_pdrb_id', $this->kategori->id)->orderBy('tahun')->orderBy('periode');
     }
 
     protected function getTableColumns(): array
     {
         return [
             Tables\Columns\TextColumn::make('deskripsi')->label('Deskripsi'),
-            Tables\Columns\TextColumn::make('triwulan')->label('Periode')->sortable(),
+            Tables\Columns\TextColumn::make('periode')->label('Periode')->sortable(),
             Tables\Columns\TextColumn::make('tahun')->label('Tahun')->searchable()->sortable(),
-            Tables\Columns\TextColumn::make('url_file')->label('Link')
-                ->formatStateUsing(fn() => 'Link')
-                ->color('#FF0000')
-                ->extraAttributes(['class' => 'text-blue-600 underline hover:text-blue-800 transition-colors'])
-                ->url(fn($record) => $record->url_file, true)
-                ->openUrlInNewTab(),
+            Tables\Columns\TextColumn::make('url_file')->label('Kuesioner')
+                ->view('blade-components.columns.link-button')
+                ->viewData(fn($record) => ['record' => $record]),
             Tables\Columns\ViewColumn::make('status')
                 ->label('Status Review')
                 ->searchable()

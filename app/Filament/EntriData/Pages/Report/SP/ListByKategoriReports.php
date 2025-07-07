@@ -7,9 +7,15 @@ use App\Models\ReportSp;
 use App\Models\User;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ViewColumn;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Contracts\HasTable;
+use Filament\Tables\Concerns\InteractsWithTable;
 
-class ListByKategoriReports extends Page
+class ListByKategoriReports extends Page implements HasTable
 {
+    use InteractsWithTable;
     public ?KategoriSp $kategori;
 
     protected static ?string $navigationIcon = null;
@@ -36,29 +42,51 @@ class ListByKategoriReports extends Page
         $this->kategori = $kategori;
     }
 
-    // protected function getTableQuery()
-    // {
-    //     return ReportSp::where('kategori_sp_id', $this->kategori->id);
-    // }
-
-    // protected function getTableColumns(): array
-    // {
-    //     return [
-    //         Tables\Columns\TextColumn::make('kategoriSp.nama')->label('Nama Kategori'),
-    //         Tables\Columns\TextColumn::make('user.name')->label('Nama Pengguna'),
-    //         Tables\Columns\TextColumn::make('tahun')->label('Tahun'),
-    //         Tables\Columns\TextColumn::make('deskripsi')->label('Deskripsi'),
-    //         Tables\Columns\TextColumn::make('url_file')->label('Link File'),
-    //     ];
-    // }
-
-    public function getViewData(): array
+    protected function getTableQuery()
     {
+        return ReportSp::where('kategori_sp_id', $this->kategori->id)->orderBy('tahun')->orderBy('periode');
+    }
 
+    protected function getTableColumns(): array
+    {
         return [
-            'reportSps' => ReportSp::where('kategori_sp_id', $this->kategori->id)->get()
+            TextColumn::make('deskripsi')->label('Deskripsi'),
+            TextColumn::make('periode')->label('Periode')->sortable(),
+            TextColumn::make('tahun')->label('Tahun')->searchable()->sortable(),
+              TextColumn::make('url_file')->label('Kuesioner')
+                    ->view('blade-components.columns.link-button')
+                    ->viewData(fn($record) => ['record' => $record]),
+            ViewColumn::make('status')
+                ->label('Status Review')
+                ->searchable()
+                ->view('blade-components.columns.status-button')
+                ->viewData(fn($record) => ['record' => $record])
         ];
     }
+    protected function getTableFilters(): array
+    {
+        return [
+            SelectFilter::make('status')
+                ->label('Status Review')
+                ->options([
+                    'selesai' => 'Selesai',
+                    'belum selesai' => 'Belum Selesai',
+                ]),
+
+            SelectFilter::make('tahun')
+                ->label('Tahun')
+                ->options(
+                    fn() =>
+                    \App\Models\ReportSp::query()
+                        ->select('tahun')
+                        ->distinct()
+                        ->orderBy('tahun', 'desc')
+                        ->pluck('tahun', 'tahun')
+                        ->toArray()
+                ),
+        ];
+    }
+
     private function denormalizeKategoriSp(string $string): string
     {
         $string = str_replace('_', ' ', $string);
@@ -89,6 +117,7 @@ class ListByKategoriReports extends Page
             ->success()
             ->sendToDatabase($recipients);
 
-        $this->reportSps = ReportSp::all();
+        // $this->reportSps = ReportSp::all();
+        $this->resetTable();
     }
 }

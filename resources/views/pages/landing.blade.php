@@ -10,7 +10,7 @@
                 <h1 class="text-white text-lg">Portal Entri Data Nunukan: Statistik Produksi dan PDRB </h1>
             </div>
             <div class="flex justify-center gap-24">
-                <a href="{{ route('dashboard.loginForm') }}"
+                <a href="{{ '/dashboard' }}"
                     class="flex flex-col cursor-pointer w-60 bg-white items-center gap-6 py-6 px-10 border-2 border-[#3B7BDB] rounded-xl">
                     <svg width="168" height="136" viewBox="0 0 168 136" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -20,7 +20,7 @@
                     </svg>
                     <h2 class="font-bold text-xl text-black">Dashboard</h2>
                 </a>
-                <a href="{{ route('entri-data.login') }}"
+                <a href="{{ '/entri-data' }}"
                     class="flex cursor-pointer flex-col w-60 bg-white items-center gap-6 py-6 px-10 border-2 border-[#3B7BDB] rounded-xl">
                     <svg width="127" height="127" viewBox="0 0 127 127" fill="none"
                         xmlns="http://www.w3.org/2000/svg">

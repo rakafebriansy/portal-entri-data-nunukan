@@ -54,6 +54,14 @@ class KategoriSpResource extends Resource
                         ->required(),
                 ]),
                 Grid::make(2)->schema([
+                    Select::make('periode')
+                        ->label('Periode')
+                        ->options([
+                            'Bulanan' => 'Bulanan',
+                            'Triwulan' => 'Triwulan',
+                            'Tahunan' => 'Tahunan',
+                        ])
+                        ->required(),
                     Textarea::make('deskripsi')
                         ->label('Deskripsi')
                         ->maxLength(255),
@@ -68,6 +76,7 @@ class KategoriSpResource extends Resource
                 TextColumn::make('id')->sortable()->label('ID'),
                 TextColumn::make('nama')->searchable()->label('Nama Kategori'),
                 TextColumn::make('bidang')->searchable()->label('Bidang')->formatStateUsing(fn($state) => Str::title($state)),
+                TextColumn::make('jenis_periode')->searchable()->label('Jenis Periode')->formatStateUsing(fn($state) => Str::title($state)),
             ])
             ->filters([
                 //

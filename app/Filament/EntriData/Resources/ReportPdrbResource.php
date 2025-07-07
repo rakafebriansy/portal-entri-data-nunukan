@@ -46,14 +46,14 @@ class ReportPdrbResource extends Resource
                     Hidden::make('user_id')
                         ->default(auth()->id())
                         ->required(),
-                    Select::make('triwulan')
+                    Select::make('periode')
                         ->label('Periode')
                         ->preload()
                         ->options([
-                            1 => 'Triwulan 1',
-                            2 => 'Triwulan 2',
-                            3 => 'Triwulan 3',
-                            4 => 'Triwulan 4',
+                            'Triwulan 1' => 'Triwulan 1',
+                            'Triwulan 2' => 'Triwulan 2',
+                            'Triwulan 3' => 'Triwulan 3',
+                            'Triwulan 4' => 'Triwulan 4',
                         ])
                         ->required(),
                     Select::make('kategori_pdrb_id')
@@ -86,19 +86,18 @@ class ReportPdrbResource extends Resource
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('deskripsi')->label('Deskripsi'),
-                Tables\Columns\TextColumn::make('triwulan')->label('Periode')->sortable(),
+                Tables\Columns\TextColumn::make('periode')->label('Periode')->sortable(),
                 Tables\Columns\TextColumn::make('tahun')->label('Tahun')->searchable()->sortable(),
-                Tables\Columns\TextColumn::make('url_file')->label('Link')
-                    ->formatStateUsing(fn() => 'Link')
-                    ->color('#FF0000')
-                    ->extraAttributes(['class' => 'text-blue-600 underline hover:text-blue-800 transition-colors'])
-                    ->url(fn($record) => $record->url_file, true)
-                    ->openUrlInNewTab(),
+                Tables\Columns\TextColumn::make('url_file')->label('Kuesioner')
+                    ->view('blade-components.columns.link-button')
+                    ->viewData(fn($record) => ['record' => $record]),
                 Tables\Columns\ViewColumn::make('status')
                     ->label('Status Review')
                     ->searchable()
                     ->view('blade-components.columns.status-button')
-                    ->viewData(fn($record) => ['record' => $record])
+                    ->viewData(fn($record) => ['record' => $record]),
+                TextColumn::make('remind')->label('Pengingat')
+                    ->view('blade-components.columns.remind-button'),
             ])
             ->filters([
                 SelectFilter::make('status')
