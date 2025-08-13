@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class DashboardPdrb extends Model
 {
-    //
+    protected $fillable = [
+        'tahun',
+        'deskripsi',
+    ];
 }

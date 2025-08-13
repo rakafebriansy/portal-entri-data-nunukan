@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('detail_dashboard_pdrbs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('dashboard_pdrbs')->constrained()->cascadeOnDelete();
+            $table->foreignId('dashboard_pdrb_id')->constrained()->cascadeOnDelete();
             $table->integer('pdrb_atas_dasar_harga_berlaku');
             $table->integer('pdrb_atas_dasar_harga_konstan');
             $table->integer('pertumbuhan_y_on_y');

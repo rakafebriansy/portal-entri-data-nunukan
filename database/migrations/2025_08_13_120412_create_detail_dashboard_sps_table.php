@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('detail_dashboard_sps', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('dashboard_sps')->constrained()->cascadeOnDelete();
+            $table->foreignId('dashboard_sp_id')->constrained()->cascadeOnDelete();
             $table->integer('jumlah_alsintan');
             $table->integer('jumlah_penggunaan_benih');
             $table->integer('total_luas_penggunaan_lahan_pertanian');
