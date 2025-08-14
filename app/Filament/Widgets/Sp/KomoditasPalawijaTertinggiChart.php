@@ -52,10 +52,10 @@ class KomoditasPalawijaTertinggiChart extends ChartWidget
                 [
                     'data' => $data,
                     'backgroundColor' => [
-                        'rgba(255, 99, 132, 0.7)',
-                        'rgba(54, 162, 235, 0.7)',
-                        'rgba(255, 206, 86, 0.7)',
-                        'rgba(75, 192, 192, 0.7)',
+                        'rgb(39, 173, 142)',
+                        'rgb(51, 112, 235)',
+                        'rgb(37, 178, 229)',
+                        'rgb(27, 206, 191)',
                     ],
                 ],
             ],
