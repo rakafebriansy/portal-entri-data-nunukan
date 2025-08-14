@@ -10,4 +10,9 @@ class DashboardPdrb extends Model
         'tahun',
         'deskripsi',
     ];
+
+    public function detailDashboardPdrb() 
+    {
+        return $this->hasOne(DetailDashboardPdrb::class);
+    }
 }

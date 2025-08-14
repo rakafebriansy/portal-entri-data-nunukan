@@ -27,5 +27,6 @@ class DatabaseSeeder extends Seeder
             'role' => 'pengentri'
         ]);
         $this->call([KategoriPdrbSeeder::class, KategoriSpSeeder::class]);
+        $this->call([DashboardSpSeeder::class, DashboardPdrbSeeder::class]);
     }
 }

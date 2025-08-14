@@ -48,4 +48,9 @@ class DetailDashboardPdrb extends Model
         'adhb_komp_3',
         'adhk_komp_3',
     ];
+
+    public function dashboardPdrb()
+    {
+        return $this->belongsTo(DashboardPdrb::class);
+    }
 }

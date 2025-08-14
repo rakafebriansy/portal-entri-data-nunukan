@@ -10,4 +10,9 @@ class DashboardSp extends Model
         'tahun',
         'deskripsi',
     ];
+
+    public function detailDashboardSp()
+    {
+        return $this->hasOne(DetailDashboardSp::class);
+    }
 }

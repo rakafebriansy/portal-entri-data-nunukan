@@ -29,6 +29,8 @@ class DetailDashboardSp extends Model
         'luas_panen_palawija_tertinggi_2',
         'jenis_panen_palawija_tertinggi_3',
         'luas_panen_palawija_tertinggi_3',
+        'jenis_panen_palawija_tertinggi_4',
+        'luas_panen_palawija_tertinggi_4',
         'jenis_tanaman_bst_tertinggi_1',
         'jumlah_tanaman_bst_tertinggi_1',
         'jenis_tanaman_bst_tertinggi_2',
@@ -60,4 +62,8 @@ class DetailDashboardSp extends Model
         'tahun_tren_pemotongan_ternak_5',
         'jumlah_tren_pemotongan_ternak_5',
     ];
+    public function dashboardSp()
+    {
+        return $this->belongsTo(DashboardSp::class);
+    }
 }

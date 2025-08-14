@@ -35,6 +35,8 @@ return new class extends Migration
             $table->integer('luas_panen_palawija_tertinggi_2');
             $table->enum('jenis_panen_palawija_tertinggi_3', ['ubi_kayu','jagung','kacang_tanah','ubi_jalar']);
             $table->integer('luas_panen_palawija_tertinggi_3');
+            $table->enum('jenis_panen_palawija_tertinggi_4', ['ubi_kayu','jagung','kacang_tanah','ubi_jalar']);
+            $table->integer('luas_panen_palawija_tertinggi_4');
             $table->enum('jenis_tanaman_bst_tertinggi_1',['pisang','nanas','durian']);
             $table->integer('jumlah_tanaman_bst_tertinggi_1');
             $table->enum('jenis_tanaman_bst_tertinggi_2',['pisang','nanas','durian']);
