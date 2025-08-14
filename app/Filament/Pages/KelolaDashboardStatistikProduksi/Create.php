@@ -83,11 +83,6 @@ class Create extends Page
         $this->formData['dashboard_sp_id'] = $id;
     }
 
-    // public static function getRouteName(?string $panel = null): string
-    // {
-    //     return 'filament.dashboard.sp.create';
-    // }
-
     public static function getRoutes(): void
     {
         Route::get(

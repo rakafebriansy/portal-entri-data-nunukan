@@ -52,12 +52,10 @@ class DashboardPanelProvider extends PanelProvider
             ->routes(function (): void {
                 \Route::get('/kelola-dashboard-statistik-produksi/{id}/create', \App\Filament\Pages\KelolaDashboardStatistikProduksi\Create::class)
                 ->name('sp.create');
-                \Route::get('/kelola-dashboard-statistik-produksi/{id}', \App\Filament\Pages\KelolaDashboardStatistikProduksi::class)
+                \Route::get('/kelola-dashboard-statistik-produksi/{id}', \App\Filament\Pages\KelolaDashboardStatistikProduksi\Detail::class)
                     ->name('sp.detail');
-                \Route::get('/kelola-dashboard-statistik-produksi/{id}/edit', \App\Filament\Pages\KelolaDashboardStatistikProduksi::class)
+                \Route::get('/kelola-dashboard-statistik-produksi/{id}/edit', \App\Filament\Pages\KelolaDashboardStatistikProduksi\Edit::class)
                     ->name('sp.edit');
-                // \Route::get('/pdrb/{url}', \App\Filament\EntriData\Pages\Report\PDRB\ListByKategoriReports::class)
-                //     ->name('dashboard.pdrb.list');
             })
             ->sidebarCollapsibleOnDesktop()
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')

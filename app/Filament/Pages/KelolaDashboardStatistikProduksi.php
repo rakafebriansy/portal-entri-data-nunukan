@@ -17,6 +17,11 @@ class KelolaDashboardStatistikProduksi extends Page implements HasForms
     public function mount()
     {
         $this->dashboardSps = DashboardSp::all();
-
+    }
+    public function delete($id)
+    {
+        DashboardSp::findOrFail($id)->delete();
+        $this->dashboardSps = DashboardSp::all();
+        session()->flash('success', 'Data berhasil dihapus!');
     }
 }

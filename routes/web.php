@@ -15,8 +15,3 @@ Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login'])->n
 Route::get('/landing', function () {
     return view('pages.landing');
 })->middleware('auth');
-Route::prefix('dashboard')->name('filament.dashboard.sp.')->group(function () {
-    Route::get('kelola-dashboard-statistik-produksi/{id}', [DashboardSpController::class, 'detail'])->name('detail');
-    Route::get('kelola-dashboard-statistik-produksi/{id}/edit', [DashboardSpController::class, 'edit'])->name('edit');
-    Route::delete('kelola-dashboard-statistik-produksi/{id}', [DashboardSpController::class, 'destroy'])->name('delete');
-});
