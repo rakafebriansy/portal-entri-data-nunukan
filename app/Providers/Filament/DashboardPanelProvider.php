@@ -47,7 +47,6 @@ class DashboardPanelProvider extends PanelProvider
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
                 Pages\Dashboard::class,
-                KelolaDashboardStatistikProduksi::class
             ])
             ->routes(function (): void {
                 \Route::get('/kelola-dashboard-statistik-produksi/{id}/create', \App\Filament\Pages\KelolaDashboardStatistikProduksi\Create::class)

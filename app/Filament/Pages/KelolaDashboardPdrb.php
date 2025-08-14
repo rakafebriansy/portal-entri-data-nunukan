@@ -17,6 +17,8 @@ class KelolaDashboardPdrb extends Page implements HasForms
     protected static string $view = 'filament.pages.kelola-dashboard-pdrb';
 
     protected static ?string $navigationLabel = 'PDRB';
+    protected static ?string $navigationGroup = 'Kelola';
+    
     public $dashboardPdrbs;
     public $search = '';
     public $formData = [

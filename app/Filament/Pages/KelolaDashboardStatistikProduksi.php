@@ -15,6 +15,7 @@ class KelolaDashboardStatistikProduksi extends Page implements HasForms
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static string $view = 'filament.pages.kelola-dashboard-statistik-produksi';
     protected static ?string $navigationLabel = 'Statistik Produksi';
+    protected static ?string $navigationGroup = 'Kelola';
     public $dashboardSps;
     public $search = '';
 
