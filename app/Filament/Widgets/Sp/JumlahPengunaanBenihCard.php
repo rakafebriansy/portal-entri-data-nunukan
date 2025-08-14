@@ -8,11 +8,17 @@ use Filament\Widgets\Widget;
 class JumlahPengunaanBenihCard extends Widget
 {
     protected static string $view = 'filament.widgets.sp.jumlah-pengunaan-benih-card';
+    public $year;
+    public function mount(): void
+    {
+        $year = session('sp_selected_year') ?? 1992;
+        $this->year = $year;
+    }
     public function getTotalPenggunaanBenih()
     {
-        return DetailDashboardSp::whereHas('dashboardSp',function($query) {
-                $query->where('tahun',now()->year);
-            })->sum('jumlah_penggunaan_benih');
+        return DetailDashboardSp::whereHas('dashboardSp', function ($query) {
+            $query->where('tahun', $this->year);
+        })->sum('jumlah_penggunaan_benih');
     }
     public function getColumnSpan(): int
     {

@@ -5,20 +5,15 @@ namespace App\Filament\Widgets\Sp;
 use App\Models\DetailDashboardSp;
 use Filament\Widgets\ChartWidget;
 
-class KomoditasPalawijaTertinggiChart extends ChartWidget
+class JumlahTanamanBstTertinggiChart extends ChartWidget
 {
-    protected static ?string $heading = 'Luas Panen 4 Komoditas Palawija Tertinggi (ha)';
-    public static array $palawijaLabels = [
-        'jagung' => 'Jagung',
-        'kacang_tanah' => 'Kacang Tanah',
-        'ubi_jalar' => 'Ubi Jalar',
-        'ubi_kayu' => 'Ubi Kayu',
-    ];
-    public static array $fields = [
-        'jenis_panen_palawija_tertinggi_1',
-        'jenis_panen_palawija_tertinggi_2',
-        'jenis_panen_palawija_tertinggi_3',
-        'jenis_panen_palawija_tertinggi_4',
+    protected static ?string $heading = 'Jumlah 3 Tanaman Menghasilkan BST Tertinggi';
+
+    public static $bstLabels = ['pisang' => 'Pisang', 'nanas' => 'Nanas', 'durian' => 'Durian'];
+    public static $fields = [
+        'jenis_tanaman_bst_tertinggi_1',
+        'jenis_tanaman_bst_tertinggi_2',
+        'jenis_tanaman_bst_tertinggi_3',
     ];
     public $year;
     public function mount(): void
@@ -28,7 +23,7 @@ class KomoditasPalawijaTertinggiChart extends ChartWidget
     }
     public function getHeading(): ?string
     {
-        return 'Luas Panen 4 Komoditas Palawija Tertinggi (ha) ' . $this->year;
+        return 'Jumlah 3 Tanaman Menghasilkan BST Tertinggi ' . $this->year;
     }
     protected function getData(): array
     {
@@ -43,34 +38,45 @@ class KomoditasPalawijaTertinggiChart extends ChartWidget
         })->toArray();
 
         $labels = collect(self::$fields)->map(function ($field) use ($detailDashboardSp) {
-            return self::$palawijaLabels[$detailDashboardSp[$field]] ?? 'Unknown';
+            return self::$bstLabels[$detailDashboardSp[$field]] ?? 'Unknown';
         })->toArray();
 
         return [
-            'labels' => $labels,
             'datasets' => [
                 [
+                    'label' => 'Jumlah Tanaman',
                     'data' => $data,
-                    'backgroundColor' => [
-                        'rgba(255, 99, 132, 0.7)',
-                        'rgba(54, 162, 235, 0.7)',
-                        'rgba(255, 206, 86, 0.7)',
-                        'rgba(75, 192, 192, 0.7)',
-                    ],
+                    'backgroundColor' => 'rgb(51, 112, 235)',
+                    'borderWidth' => 0,
+                    'indexAxis' => 'y',
+                ],
+            ],
+            'labels' => $labels,
+        ];
+    }
+
+    protected function getOptions(): array
+    {
+        return [
+            'indexAxis' => 'y',
+            'scales' => [
+                'x' => [
+                    'beginAtZero' => true,
                 ],
             ],
         ];
     }
-    protected function getMaxHeight(): string
-    {
-        return '200px';
-    }
+
     protected function getType(): string
     {
-        return 'doughnut';
+        return 'bar';
     }
     public function getColumnSpan(): int
     {
         return 3;
+    }
+    protected function getMaxHeight(): string
+    {
+        return '200px';
     }
 }

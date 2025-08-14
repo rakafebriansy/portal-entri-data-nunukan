@@ -14,7 +14,7 @@
 
             </div>
             <div class="flex flex-col justify-start">
-                <h2 class="text-xs font-bold text-gray-700">Jumlah Penggunaan Benih {{ now()->year }}</h2>
+                <h2 class="text-xs font-bold text-gray-700">Jumlah Penggunaan Benih {{ $this->year }}</h2>
                 <p class="text-sm font-extrabold text-indigo-600">{{ $this->getTotalPenggunaanBenih() }} ton</p>
             </div>
         </div>

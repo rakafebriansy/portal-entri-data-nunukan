@@ -9,10 +9,9 @@ class LuasPanenJagungChart extends ChartWidget
 {
     protected static ?string $heading = 'Luas Panen Jagung (ha)';
     public $year;
-
     public function mount(): void
     {
-        $year = now()->year;
+        $year = session('sp_selected_year') ?? 1992;
         $this->year = $year;
     }
     public function getHeading(): ?string
@@ -49,7 +48,7 @@ class LuasPanenJagungChart extends ChartWidget
         return [
             'datasets' => [
                 [
-                    'label' => 'Jagung',
+                    'label' => 'Luas (m2)',
                     'data' => $data,
                     'backgroundColor' => 'rgb(51, 112, 235)',
                     'borderWidth' => 0,
