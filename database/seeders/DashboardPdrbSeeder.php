@@ -21,7 +21,7 @@ class DashboardPdrbSeeder extends Seeder
         for ($tahun = $tahunMulai; $tahun <= $tahunAkhir; $tahun++) {
             $dashboard = DashboardPdrb::create([
                 'tahun' => $tahun,
-                'deskripsi' => "Data PDRB untuk tahun $tahun. " . Str::random(50),
+                'deskripsi' => "Data PDRB untuk tahun $tahun. " . fake()->paragraph(3),
             ]);
 
             DetailDashboardPdrb::create([
@@ -31,6 +31,7 @@ class DashboardPdrbSeeder extends Seeder
                 'pertumbuhan_y_on_y' => rand(1, 10),
                 'pdrb_per_kapita' => rand(1000, 5000),
                 'nilai_adhb' => rand(50000, 200000),
+                'nilai_adhk' => rand(50000, 200000),
                 'sektor_lapangan_usaha_1_1' => rand(1000, 5000),
                 'sektor_lapangan_usaha_1_2' => rand(1000, 5000),
                 'sektor_lapangan_usaha_1_3' => rand(1000, 5000),
@@ -58,7 +59,6 @@ class DashboardPdrbSeeder extends Seeder
                 'sektor_pengeluaran_4_1' => rand(1000, 5000),
                 'sektor_pengeluaran_4_2' => rand(1000, 5000),
                 'sektor_pengeluaran_4_3' => rand(1000, 5000),
-                'sektor_pengeluaran_4_4' => rand(1000, 5000),
                 'adhb_komp_1' => rand(5000, 20000),
                 'adhk_komp_1' => rand(5000, 20000),
                 'adhb_komp_2' => rand(5000, 20000),

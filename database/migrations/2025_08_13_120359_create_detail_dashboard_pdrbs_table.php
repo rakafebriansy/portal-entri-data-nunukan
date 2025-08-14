@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('pertumbuhan_y_on_y');
             $table->integer('pdrb_per_kapita');
             $table->integer('nilai_adhb');
+            $table->integer('nilai_adhk');
             $table->integer('sektor_lapangan_usaha_1_1'); 
             $table->integer('sektor_lapangan_usaha_1_2'); 
             $table->integer('sektor_lapangan_usaha_1_3'); 
@@ -46,7 +47,6 @@ return new class extends Migration
             $table->integer('sektor_pengeluaran_4_1'); 
             $table->integer('sektor_pengeluaran_4_2'); 
             $table->integer('sektor_pengeluaran_4_3'); 
-            $table->integer('sektor_pengeluaran_4_4'); 
             $table->integer('adhb_komp_1');
             $table->integer('adhk_komp_1');
             $table->integer('adhb_komp_2');

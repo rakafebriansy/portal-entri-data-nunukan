@@ -2,23 +2,24 @@
 
 namespace App\Filament\Pages;
 
-use App\Models\DashboardSp;
+use App\Models\DashboardPdrb;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Pages\Page;
 
-class KelolaDashboardStatistikProduksi extends Page implements HasForms
+class KelolaDashboardPdrb extends Page implements HasForms
 {
     use InteractsWithForms;
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
-    protected static string $view = 'filament.pages.kelola-dashboard-statistik-produksi';
-    protected static ?string $navigationLabel = 'Statistik Produksi';
-    public $dashboardSps;
-    public $search = '';
 
-    public array $formData = [
+    protected static string $view = 'filament.pages.kelola-dashboard-pdrb';
+
+    protected static ?string $navigationLabel = 'PDRB';
+    public $dashboardPdrbs;
+    public $search = '';
+    public $formData = [
         'tahun' => null,
         'deskripsi' => null,
     ];
@@ -27,14 +28,13 @@ class KelolaDashboardStatistikProduksi extends Page implements HasForms
     {
         $this->loadData();
     }
-
     public function updatedSearch()
     {
         $this->loadData();
     }
     public function loadData()
     {
-        $this->dashboardSps = DashboardSp::query()
+        $this->dashboardPdrbs = DashboardPdrb::query()
             ->when(
                 $this->search,
                 fn($query) =>
@@ -52,16 +52,16 @@ class KelolaDashboardStatistikProduksi extends Page implements HasForms
             'formData.deskripsi' => 'required',
         ]);
 
-        DashboardSp::create($validated['formData']);
+        DashboardPdrb::create($validated['formData']);
 
         $this->reset('formData');
         $this->loadData();
-        session()->flash('success', 'Statistik Produksi berhasil ditambahkan.');
+        session()->flash('success', 'PDRB berhasil ditambahkan.');
     }
     public function delete($id)
     {
-        DashboardSp::findOrFail($id)->delete();
-        $this->dashboardSps = DashboardSp::all();
+        DashboardPdrb::findOrFail($id)->delete();
+        $this->dashboardPdrbs = DashboardPdrb::all();
         session()->flash('success', 'Data berhasil dihapus!');
     }
 }

@@ -20,7 +20,7 @@ class DashboardSpSeeder extends Seeder
         for ($tahun = $tahunMulai; $tahun <= $tahunAkhir; $tahun++) {
             $dashboard = DashboardSp::create([
                 'tahun' => $tahun,
-                'deskripsi' => fake()->paragraph(3)
+                'deskripsi' => "Data Statistik Produksi untuk tahun $tahun. " . fake()->paragraph(3)
             ]);
 
             DetailDashboardSp::create([

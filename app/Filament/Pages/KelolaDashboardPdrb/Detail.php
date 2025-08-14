@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Filament\Pages\KelolaDashboardStatistikProduksi;
+namespace App\Filament\Pages\KelolaDashboardPdrb;
 
-use App\Models\DashboardSp;
-use App\Models\DetailDashboardSp;
+use App\Models\DetailDashboardPdrb;
 use Filament\Pages\Page;
 use Illuminate\Support\Facades\Route;
 
@@ -11,8 +10,8 @@ class Detail extends Page
 {
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
-    
-    protected static string $view = 'filament.pages.kelola-dashboard-statistik-produksi.detail';
+    protected static string $view = 'filament.pages.kelola-dashboard-pdrb.detail';
+
     protected static bool $shouldRegisterNavigation = false;
 
     public int $id;
@@ -23,16 +22,16 @@ class Detail extends Page
     public static function getRoutes(): void
     {
         Route::get(
-            '/kelola-dashboard-statistik-produksi/{id}',
+            '/kelola-dashboard-pdrb/{id}',
             static::class
         )->name(static::getRouteName());
     }
     public function mount(int $id)
     {
         $this->id = $id;
-        $this->dashboardSp = DetailDashboardSp::where('dashboard_sp_id',$id)->firstOrFail();
+        $this->dashboardSp = DetailDashboardPdrb::where('dashboard_pdrb_id', $id)->firstOrFail();
 
-        $detail = DetailDashboardSp::where('dashboard_sp_id', $id)->firstOrFail();
+        $detail = DetailDashboardPdrb::where('dashboard_pdrb_id', $id)->firstOrFail();
         $this->formData = $detail->toArray();
     }
 

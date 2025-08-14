@@ -12,7 +12,7 @@
             </x-slot>
 
             <x-slot name="heading">
-                Tambah Statistik Produksi
+                Tambah PDRB
             </x-slot>
 
             <x-slot name="footer">
@@ -33,17 +33,17 @@
         </x-filament::modal>
     </div>
     <div class="flex flex-col gap-6">
-        @forelse ($dashboardSps as $dashboardSp)
+        @forelse ($dashboardPdrbs as $dashboardPdrb)
             <div class="bg-white rounded-xl justify-between flex p-5 shadow border items-center">
                 <div class="w-[70%]">
-                    <h3 class="text-lg font-semibold">{{ $dashboardSp->tahun }}</h3>
-                    <p class="text-sm text-gray-500">{{ $dashboardSp->deskripsi }}</p>
+                    <h3 class="text-lg font-semibold">{{ $dashboardPdrb->tahun }}</h3>
+                    <p class="text-sm text-gray-500">{{ $dashboardPdrb->deskripsi }}</p>
                 </div>
                 <div class="flex gap-3 items-center">
-                    @if ($dashboardSp->detailDashboardSp)
-                        <a href="/dashboard/kelola-dashboard-statistik-produksi/{{ $dashboardSp->id }}"
+                    @if ($dashboardPdrb->detaildashboardPdrb)
+                        <a href="/dashboard/kelola-dashboard-pdrb/{{ $dashboardPdrb->id }}"
                             class="px-3 py-1 rounded-lg text-sm text-white bg-[#3B7BDB]"> Lihat Detail </a>
-                        <a href="{{ route('filament.dashboard.sp.edit', ['id' => $dashboardSp->id]) }}">
+                        <a href="{{ route('filament.dashboard.pdrb.edit', ['id' => $dashboardPdrb->id]) }}">
                             <svg width="34" height="33" viewBox="0 0 34 33" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -54,7 +54,7 @@
                                     fill="#3B7BDB" />
                             </svg>
                         </a>
-                        <x-filament::button color="red" wire:click="delete({{ $dashboardSp->id }})"
+                        <x-filament::button color="red" wire:click="delete({{ $dashboardPdrb->id }})"
                             style="padding: 0;"><svg width="34" height="33" viewBox="0 0 34 33" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -62,7 +62,7 @@
                                     fill="#D4335D" />
                             </svg></x-filament::button>
                     @else
-                        <a href="/dashboard/kelola-dashboard-statistik-produksi/{{ $dashboardSp->id }}/create"
+                        <a href="/dashboard/kelola-dashboard-pdrb/{{ $dashboardPdrb->id }}/create"
                             class="px-3 py-1 rounded-lg text-sm text-white bg-[#3B7BDB]">
                             + Buat
                         </a>
@@ -95,6 +95,5 @@
                 </div>
             </div>
         @endforelse
-
     </div>
 </x-filament-panels::page>

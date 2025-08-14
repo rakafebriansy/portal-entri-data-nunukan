@@ -56,6 +56,12 @@ class DashboardPanelProvider extends PanelProvider
                     ->name('sp.detail');
                 \Route::get('/kelola-dashboard-statistik-produksi/{id}/edit', \App\Filament\Pages\KelolaDashboardStatistikProduksi\Edit::class)
                     ->name('sp.edit');
+                \Route::get('/kelola-dashboard-pdrb/{id}/create', \App\Filament\Pages\KelolaDashboardPdrb\Create::class)
+                ->name('pdrb.create');
+                \Route::get('/kelola-dashboard-pdrb/{id}', \App\Filament\Pages\KelolaDashboardPdrb\Detail::class)
+                    ->name('pdrb.detail');
+                \Route::get('/kelola-dashboard-pdrb/{id}/edit', \App\Filament\Pages\KelolaDashboardPdrb\Edit::class)
+                    ->name('pdrb.edit');
             })
             ->sidebarCollapsibleOnDesktop()
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
