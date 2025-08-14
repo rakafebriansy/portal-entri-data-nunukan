@@ -8,13 +8,16 @@ use Filament\Widgets\ChartWidget;
 class LuasPanenJagungChart extends ChartWidget
 {
     protected static ?string $heading = 'Luas Panen Jagung (ha)';
-    protected static $year;
+    public $year;
 
     public function mount(): void
     {
         $year = now()->year;
-        self::$heading = 'Luas Panen Jagung (ha) ' . $year;
-        self::$year = $year;
+        $this->year = $year;
+    }
+    public function getHeading(): ?string
+    {
+        return 'Luas Panen Jagung (ha) ' . $this->year;
     }
     protected function getData(): array
     {
@@ -38,8 +41,8 @@ class LuasPanenJagungChart extends ChartWidget
         $data = [];
 
         foreach ($bulan as $b) {
-            $data[] = DetailDashboardSp::whereHas('dashboardSp',function($query) {
-                $query->where('tahun',self::$year);
+            $data[] = DetailDashboardSp::whereHas('dashboardSp', function ($query) {
+                $query->where('tahun', $this->year);
             })->sum('luas_panen_jagung_' . $b);
         }
 
@@ -48,7 +51,7 @@ class LuasPanenJagungChart extends ChartWidget
                 [
                     'label' => 'Jagung',
                     'data' => $data,
-                    'backgroundColor' => 'rgba(72, 81, 83, 0.7)',
+                    'backgroundColor' => 'rgb(51, 112, 235)',
                     'borderWidth' => 0,
                 ],
             ],
@@ -63,5 +66,9 @@ class LuasPanenJagungChart extends ChartWidget
     public function getColumnSpan(): int
     {
         return 3;
+    }
+    protected function getMaxHeight(): string
+    {
+        return '200px';
     }
 }

@@ -4,6 +4,7 @@ namespace App\Filament\Pages\Dashboard;
 
 use App\Filament\Widgets\Sp\JumlahAlsintanCard;
 use App\Filament\Widgets\Sp\JumlahPengunaanBenihCard;
+use App\Filament\Widgets\Sp\KomoditasPalawijaTertinggiChart;
 use App\Filament\Widgets\Sp\LuasPanenJagungChart;
 use App\Filament\Widgets\Sp\LuasPenggunaanLahanCard;
 use App\Models\DetailDashboardSp;
@@ -21,7 +22,8 @@ class StatistikProduksi extends Page
             JumlahAlsintanCard::class,
             JumlahPengunaanBenihCard::class,
             LuasPenggunaanLahanCard::class,
-            LuasPanenJagungChart::class
+            LuasPanenJagungChart::class,
+            KomoditasPalawijaTertinggiChart::class
         ];
     }
     public function getHeaderWidgetsColumns(): int 

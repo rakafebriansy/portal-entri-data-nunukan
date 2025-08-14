@@ -15,7 +15,7 @@
             </div>
             <div class="flex flex-col justify-between">
                 <h2 class="text-xs font-bold text-gray-700">Total Luas Penggunaan Lahan Pertanian {{ now()->year }}</h2>
-                <p class="text-sm font-extrabold text-indigo-600">{{ $this->getTotalLuasLahan() }}</p>
+                <p class="text-sm font-extrabold text-indigo-600">{{ $this->getTotalLuasLahan() }} hektar</p>
             </div>
         </div>
 
