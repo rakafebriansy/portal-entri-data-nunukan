@@ -42,16 +42,30 @@ class TrenPemotonganTernakChart extends ChartWidget
 
     protected function getData(): array
     {
-        $records = DetailDashboardSp::with('dashboardSp')->get();
+        $tahunAwal = $this->year - 4;
+        $tahunAkhir = $this->year;
+
+        $records = DetailDashboardSp::with('dashboardSp')
+            ->whereHas('dashboardSp', fn($q) => $q->whereBetween('tahun', [$tahunAwal, $tahunAkhir]))
+            ->get();
 
         $labels = [];
         $data = [];
 
-        foreach (range(0, 4) as $i) {
-            $tahun = $records->first()[self::$tahunFields[$i]] ?? null;
-            $labels[] = $tahun ?? 'Unknown';
+        foreach (range($tahunAwal, $tahunAkhir) as $tahun) {
+            $labels[] = $tahun;
 
-            $total = $records->sum(self::$jumlahFields[$i]);
+            $total = $records
+                ->filter(fn($r) => $r->dashboardSp->tahun == $tahun)
+                ->sum(
+                    fn($r) =>
+                    $r->jumlah_tren_pemotongan_ternak_1 +
+                    $r->jumlah_tren_pemotongan_ternak_2 +
+                    $r->jumlah_tren_pemotongan_ternak_3 +
+                    $r->jumlah_tren_pemotongan_ternak_4 +
+                    $r->jumlah_tren_pemotongan_ternak_5
+                );
+
             $data[] = $total;
         }
 
