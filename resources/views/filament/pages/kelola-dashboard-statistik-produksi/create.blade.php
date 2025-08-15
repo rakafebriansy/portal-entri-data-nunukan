@@ -331,7 +331,7 @@
                 <x-filament::button color="danger" wire:click="resetForm">Reset</x-filament::button>
                 <div class="flex items-center gap-2">
                     <x-filament::button color="gray" wire:click="previousStep">Kembali</x-filament::button>
-                    <x-filament::button color="success" wire:click="submit">Submit</x-filament::button>
+                    <x-filament::button color="success" wire:click="submit">Simpan</x-filament::button>
                 </div>
             </div>
         </div>

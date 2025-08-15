@@ -15,7 +15,7 @@ class Detail extends Page
     protected static bool $shouldRegisterNavigation = false;
 
     public int $id;
-    public $dashboardSp;
+    public $dashboardPdrb;
     public array $formData = [];
     public int $step = 1;
 
@@ -29,7 +29,7 @@ class Detail extends Page
     public function mount(int $id)
     {
         $this->id = $id;
-        $this->dashboardSp = DetailDashboardPdrb::where('dashboard_pdrb_id', $id)->firstOrFail();
+        $this->dashboardPdrb = DetailDashboardPdrb::where('dashboard_pdrb_id', $id)->firstOrFail();
 
         $detail = DetailDashboardPdrb::where('dashboard_pdrb_id', $id)->firstOrFail();
         $this->formData = $detail->toArray();

@@ -56,20 +56,23 @@
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Jumlah Alsintan {{ $dashboardSp->tahun }}
                             (dalam unit)</label>
-                        <input type="text" wire:model.defer="formData.jumlah_alsintan" placeholder="Masukkan jumlah"
+                        <input readonly
+                         type="text" wire:model.defer="formData.jumlah_alsintan" placeholder="Masukkan jumlah"
                             class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" required />
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Jumlah Penggunaan Benih
                             {{ $dashboardSp->tahun }} (dalam ton)</label>
-                        <input type="text" wire:model.defer="formData.jumlah_penggunaan_benih"
+                        <input readonly
+                         type="text" wire:model.defer="formData.jumlah_penggunaan_benih"
                             placeholder="Masukkan jumlah"
                             class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" required />
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Total Luas Penggunaan Lahan Pertanian
                             {{ $dashboardSp->tahun }} (dalam hektar)</label>
-                        <input type="text" wire:model.defer="formData.total_luas_penggunaan_lahan_pertanian"
+                        <input readonly
+                         type="text" wire:model.defer="formData.total_luas_penggunaan_lahan_pertanian"
                             placeholder="Masukkan jumlah"
                             class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" required />
                     </div>
@@ -82,7 +85,8 @@
                             @foreach (['jan', 'mar', 'mei', 'jul', 'sep', 'nov'] as $month)
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">{{ $months[$month] }}</label>
-                                    <input type="text"
+                                    <input readonly
+                                     type="text"
                                         wire:model.defer="formData.luas_panen_jagung_{{ $month }}"
                                         placeholder="Masukkan jumlah"
                                         class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" required />
@@ -94,7 +98,8 @@
                                 <div>
                                     <label
                                         class="block text-sm font-medium text-gray-700">{{ $months[$month] }}</label>
-                                    <input type="text"
+                                    <input readonly
+                                     type="text"
                                         wire:model.defer="formData.luas_panen_jagung_{{ $month }}"
                                         placeholder="Masukkan jumlah"
                                         class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" required />
@@ -122,7 +127,7 @@
                             @for ($i = 1; $i <= 4; $i++)
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Jenis</label>
-                                    <select
+                                    <select disabled
                                         wire:model.defer="formData.jenis_panen_palawija_tertinggi_{{ $i }}"
                                         class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" required>
                                         <option value="">Pilih</option>
@@ -137,7 +142,8 @@
                             @for ($i = 1; $i <= 4; $i++)
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Luas</label>
-                                    <input type="text"
+                                    <input readonly
+                                     type="text"
                                         wire:model.defer="formData.luas_panen_palawija_tertinggi_{{ $i }}"
                                         placeholder="Masukkan jumlah"
                                         class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" required />
@@ -157,7 +163,7 @@
                                 @for ($i = 1; $i <= 3; $i++)
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Jenis</label>
-                                        <select
+                                        <select disabled
                                             wire:model.defer="formData.jenis_tanaman_bst_tertinggi_{{ $i }}"
                                             class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm"
                                             required>
@@ -173,7 +179,8 @@
                                 @for ($i = 1; $i <= 3; $i++)
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Jumlah</label>
-                                        <input type="text"
+                                        <input readonly
+                                         type="text"
                                             wire:model.defer="formData.jumlah_tanaman_bst_tertinggi_{{ $i }}"
                                             placeholder="Masukkan jumlah"
                                             class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm"
@@ -192,7 +199,7 @@
                                 @for ($i = 1; $i <= 3; $i++)
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Jenis</label>
-                                        <select
+                                        <select disabled
                                             wire:model.defer="formData.jenis_tanaman_sbs_tertinggi_{{ $i }}"
                                             class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm"
                                             required>
@@ -208,7 +215,8 @@
                                 @for ($i = 1; $i <= 3; $i++)
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Jumlah</label>
-                                        <input type="text"
+                                        <input readonly
+                                         type="text"
                                             wire:model.defer="formData.luas_tanaman_sbs_tertinggi_{{ $i }}"
                                             placeholder="Masukkan jumlah"
                                             class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm"
@@ -221,7 +229,7 @@
                 </div>
             </div>
 
-            <div class="flex justify-between">
+            <div class="flex items-center gap-2 justify-end">
                 <x-filament::button color="gray" wire:click="previousStep">Kembali</x-filament::button>
                 <x-filament::button wire:click="nextStep">Selanjutnya</x-filament::button>
             </div>
@@ -240,7 +248,7 @@
                             @for ($i = 1; $i <= 4; $i++)
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Jenis</label>
-                                    <select wire:model.defer="formData.jenis_ternak_potong_{{ $i }}"
+                                    <select disabled wire:model.defer="formData.jenis_ternak_potong_{{ $i }}"
                                         class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" required>
                                         <option value="">Pilih</option>
                                         @foreach ($ternakLabels as $key => $label)
@@ -254,7 +262,8 @@
                             @for ($i = 1; $i <= 4; $i++)
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Jumlah</label>
-                                    <input type="text"
+                                    <input readonly
+                                     type="text"
                                         wire:model.defer="formData.jumlah_ternak_potong_{{ $i }}"
                                         placeholder="Masukkan jumlah"
                                         class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" required />
@@ -272,7 +281,8 @@
                             @for ($i = 1; $i <= 5; $i++)
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Tahun</label>
-                                    <input type="text"
+                                    <input readonly
+                                     type="text"
                                         wire:model.defer="formData.tahun_tren_pemotongan_ternak_{{ $i }}"
                                         placeholder="Masukkan tahun"
                                         class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" required />
@@ -283,7 +293,8 @@
                             @for ($i = 1; $i <= 5; $i++)
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Jumlah</label>
-                                    <input type="text"
+                                    <input readonly
+                                     type="text"
                                         wire:model.defer="formData.jumlah_tren_pemotongan_ternak_{{ $i }}"
                                         placeholder="Masukkan jumlah"
                                         class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" required />

@@ -11,7 +11,7 @@ class PertumbuhanYoyCard extends Widget
     public $year;
     public function mount(): void
     {
-        $year = session('pdrb_selected_year') ?? 1992;
+        $year = session('pdrb_selected_year') ?? now()->year;
         $this->year = $year;
     }
 

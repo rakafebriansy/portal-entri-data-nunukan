@@ -11,7 +11,6 @@ use App\Filament\Widgets\Sp\LuasPanenJagungChart;
 use App\Filament\Widgets\Sp\LuasPenggunaanLahanCard;
 use App\Filament\Widgets\Sp\LuasTanamanSbsTertinggiChart;
 use App\Filament\Widgets\Sp\TrenPemotonganTernakChart;
-use App\Models\DetailDashboardSp;
 use Filament\Pages\Page;
 
 class StatistikProduksi extends Page

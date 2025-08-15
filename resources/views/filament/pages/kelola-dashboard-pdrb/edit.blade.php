@@ -1,7 +1,6 @@
 <x-filament-panels::page>
     <div class="mt-6 flex justify-start">
-        <x-filament::button color="gray" tag="a"
-            href="{{ url('/dashboard/kelola-dashboard-pdrb') }}">
+        <x-filament::button color="gray" tag="a" href="{{ url('/dashboard/kelola-dashboard-pdrb') }}">
             Kembali
         </x-filament::button>
     </div>
@@ -57,8 +56,7 @@
                         class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" />
                 </div>
             </div>
-            <div class="flex justify-between">
-                <x-filament::button color="gray" wire:click="previousStep">Kembali</x-filament::button>
+            <div class="flex items-center justify-end">
                 <x-filament::button wire:click="nextStep">Selanjutnya</x-filament::button>
             </div>
         </div>
@@ -69,14 +67,14 @@
         <div class="bg-white shadow rounded p-6">
             <div class="grid grid-cols-2 gap-6">
                 <div>
-                    <h1 class="mb-2">Sektor Pengeluaran</h1>
+                    <h1 class="mb-2">Sektor Lapangan Usaha</h1>
                     @for ($i = 1; $i <= 4; $i++)
                         <div class="mb-3">
                             <label class="block text-sm font-medium text-gray-700">Sektor {{ $i }}</label>
                             <div class="grid grid-cols-3 gap-3">
                                 @for ($j = 1; $j <= 3; $j++)
                                     <input type="number" required
-                                        wire:model.defer="formData.sektor_pengeluaran_{{ $i }}_{{ $j }}"
+                                        wire:model.defer="formData.sektor_lapangan_usaha_{{ $i }}_{{ $j }}"
                                         class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" />
                                 @endfor
                             </div>
@@ -91,7 +89,8 @@
                             <div class="grid grid-cols-2 gap-3">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">ADHD</label>
-                                    <input type="number" required wire:model.defer="formData.adhb_komp{{ $i }}"
+                                    <input type="number" required
+                                        wire:model.defer="formData.adhb_lapangan_usaha_{{ $i }}"
                                         class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" />
                                 </div>
                                 <div>
@@ -105,7 +104,7 @@
                     @endfor
                 </div>
             </div>
-            <div class="flex justify-between mt-4">
+            <div class="flex items-center gap-2 justify-end">
                 <x-filament::button color="gray" wire:click="previousStep">Kembali</x-filament::button>
                 <x-filament::button wire:click="nextStep">Selanjutnya</x-filament::button>
             </div>
@@ -139,12 +138,14 @@
                             <div class="grid grid-cols-2 gap-3">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">ADHD</label>
-                                    <input type="number" required wire:model.defer="formData.adhb_komp_{{ $i }}"
+                                    <input type="number" required
+                                        wire:model.defer="formData.adhb_komp_{{ $i }}"
                                         class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" />
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">ADHK</label>
-                                    <input type="number" required wire:model.defer="formData.adhk_komp_{{ $i }}"
+                                    <input type="number" required
+                                        wire:model.defer="formData.adhk_komp_{{ $i }}"
                                         class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" />
                                 </div>
                             </div>
@@ -154,7 +155,7 @@
             </div>
             <div class="flex justify-between mt-4">
                 <x-filament::button color="gray" wire:click="previousStep">Kembali</x-filament::button>
-                <x-filament::button color="primary" wire:click="save">Simpan</x-filament::button>
+                <x-filament::button color="success" wire:click="submit">Simpan</x-filament::button>
             </div>
         </div>
     @endif

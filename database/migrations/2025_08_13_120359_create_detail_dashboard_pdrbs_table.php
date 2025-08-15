@@ -29,6 +29,9 @@ return new class extends Migration
             $table->integer('sektor_lapangan_usaha_3_1'); 
             $table->integer('sektor_lapangan_usaha_3_2'); 
             $table->integer('sektor_lapangan_usaha_3_3');
+            $table->integer('sektor_lapangan_usaha_4_1'); 
+            $table->integer('sektor_lapangan_usaha_4_2'); 
+            $table->integer('sektor_lapangan_usaha_4_3');
             $table->integer('adhb_lapangan_usaha_1');
             $table->integer('adhk_lapangan_usaha_1');
             $table->integer('adhb_lapangan_usaha_2');

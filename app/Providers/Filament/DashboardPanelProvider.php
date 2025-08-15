@@ -43,10 +43,10 @@ class DashboardPanelProvider extends PanelProvider
             ->userMenuItems([
                 MenuItem::make()->url('/landing')->label('Kembali ke Menu')->icon('heroicon-o-arrow-left-circle')
             ])
-            ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
-            ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
+            ->discoverResources( app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
+            ->discoverPages( app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
-                Pages\Dashboard::class,
+                // Pages\Dashboard::class,
             ])
             ->routes(function (): void {
                 \Route::get('/kelola-dashboard-statistik-produksi/{id}/create', \App\Filament\Pages\KelolaDashboardStatistikProduksi\Create::class)
@@ -63,9 +63,9 @@ class DashboardPanelProvider extends PanelProvider
                     ->name('pdrb.edit');
             })
             ->sidebarCollapsibleOnDesktop()
-            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
+            ->discoverWidgets( app_path('Filament/Widgets'),  'App\\Filament\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
+                // Widgets\AccountWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,

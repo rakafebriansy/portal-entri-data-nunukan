@@ -23,7 +23,7 @@ class KomoditasPalawijaTertinggiChart extends ChartWidget
     public $year;
     public function mount(): void
     {
-        $year = session('sp_selected_year') ?? 1992;
+        $year = session('sp_selected_year') ?? now()->year;
         $this->year = $year;
     }
     public function getHeading(): ?string

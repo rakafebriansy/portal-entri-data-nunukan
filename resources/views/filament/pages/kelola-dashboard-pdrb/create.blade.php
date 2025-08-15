@@ -75,17 +75,17 @@
             <div class="">
                 <div class="grid grid-cols-2 gap-6">
                     <div class="">
-                        <h1 class="mb-2">Sektor Pengeluaran
+                        <h1 class="mb-2">Sektor Lapangan Usaha
                         </h1>
                         <div class="">
-                            @for ($j = 1; $j < 5; $j++)
+                            @for ($i = 1; $i < 5; $i++)
                                 <div class="">
                                     <label class="block text-sm font-medium text-gray-700">Sektor
                                         {{ $i }}</label>
                                     <div class="grid-cols-3 grid gap-3">
                                         @for ($j = 1; $j < 4; $j++)
                                             <input type="number" required
-                                                wire:model.defer="formData.sektor_pengeluaran_{{ $i }}_{{ $j }}"
+                                                wire:model.defer="formData.sektor_lapangan_usaha_{{ $i }}_{{ $j }}"
                                                 placeholder="Masukkan jumlah"
                                                 class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" />
                                         @endfor
@@ -103,7 +103,7 @@
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">ADHD</label>
                                         <input type="number" required
-                                            wire:model.defer="formData.adhb_komp{{ $i }}"
+                                            wire:model.defer="formData.adhb_lapangan_usaha_{{ $i }}"
                                             placeholder="Masukkan jumlah"
                                             class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" />
                                     </div>
@@ -139,7 +139,7 @@
                         <h1 class="mb-2">Sektor Pengeluaran
                         </h1>
                         <div class="">
-                            @for ($j = 1; $j < 5; $j++)
+                            @for ($i = 1; $i < 5; $i++)
                                 <div class="">
                                     <label class="block text-sm font-medium text-gray-700">Sektor
                                         {{ $i }}</label>
@@ -185,7 +185,7 @@
                 <x-filament::button color="danger" wire:click="resetForm">Reset</x-filament::button>
                 <div class="flex items-center gap-2">
                     <x-filament::button color="gray" wire:click="previousStep">Kembali</x-filament::button>
-                    <x-filament::button wire:click="nextStep">Selanjutnya</x-filament::button>
+                    <x-filament::button color="success" wire:click="submit">Simpan</x-filament::button>
                 </div>
             </div>
         </div>

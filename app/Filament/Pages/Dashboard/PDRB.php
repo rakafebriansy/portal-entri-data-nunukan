@@ -2,10 +2,15 @@
 
 namespace App\Filament\Pages\Dashboard;
 
+use App\Filament\Widgets\Sp\AdhbAdhkChart;
 use App\Filament\Widgets\Sp\PdrbAtasDasarHargaBerlakuCard;
 use App\Filament\Widgets\Sp\PdrbAtasDasarHargaKonstanCard;
+use App\Filament\Widgets\Sp\PdrbLapanganUsahaTable;
+use App\Filament\Widgets\Sp\PdrbPengeluaranTable;
 use App\Filament\Widgets\Sp\PdrbPerKapitaCard;
 use App\Filament\Widgets\Sp\PertumbuhanYoyCard;
+use App\Filament\Widgets\Sp\SektorLapanganUsahaChart;
+use App\Filament\Widgets\Sp\SektorPengeluaranChart;
 use Filament\Pages\Page;
 
 class PDRB extends Page
@@ -28,7 +33,12 @@ class PDRB extends Page
             PdrbAtasDasarHargaBerlakuCard::class,
             PdrbAtasDasarHargaKonstanCard::class,
             PertumbuhanYoyCard::class,
-            PdrbPerKapitaCard::class
+            PdrbPerKapitaCard::class,
+            SektorLapanganUsahaChart::class,
+            SektorPengeluaranChart::class,
+            PdrbLapanganUsahaTable::class,
+            PdrbPengeluaranTable::class,
+            AdhbAdhkChart::class
         ];
     }
     public function getHeaderWidgetsColumns(): int

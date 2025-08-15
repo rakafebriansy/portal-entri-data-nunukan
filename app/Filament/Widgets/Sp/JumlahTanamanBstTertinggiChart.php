@@ -18,7 +18,7 @@ class JumlahTanamanBstTertinggiChart extends ChartWidget
     public $year;
     public function mount(): void
     {
-        $year = session('sp_selected_year') ?? 1992;
+        $year = session('sp_selected_year') ?? now()->year;
         $this->year = $year;
     }
     public function getHeading(): ?string
@@ -31,7 +31,7 @@ class JumlahTanamanBstTertinggiChart extends ChartWidget
             $query->where('tahun', $this->year);
         })->first();
 
-        $data = collect(self::$fields)->map(function ($field) {
+        $data = collect(value: self::$fields)->map(function ($field) {
             return DetailDashboardSp::whereHas('dashboardSp', function ($query) {
                 $query->where('tahun', $this->year);
             })->sum($field);
@@ -48,7 +48,6 @@ class JumlahTanamanBstTertinggiChart extends ChartWidget
                     'data' => $data,
                     'backgroundColor' => 'rgb(51, 112, 235)',
                     'borderWidth' => 0,
-                    'indexAxis' => 'y',
                 ],
             ],
             'labels' => $labels,
