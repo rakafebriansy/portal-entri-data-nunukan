@@ -23,15 +23,6 @@
     </div>
 
     @php
-        $palawijaLabels = [
-            'jagung' => 'Jagung',
-            'kacang_tanah' => 'Kacang Tanah',
-            'ubi_jalar' => 'Ubi Jalar',
-            'ubi_kayu' => 'Ubi Kayu',
-        ];
-        $bstLabels = ['pisang' => 'Pisang', 'nanas' => 'Nanas', 'durian' => 'Durian'];
-        $sbsLabels = ['bayam' => 'Bayam', 'kangkung' => 'Kangkung', 'sawi' => 'Sawi'];
-        $ternakLabels = ['kambing' => 'Kambing', 'babi' => 'Babi', 'sapi' => 'Sapi', 'kerbau' => 'Kerbau'];
         $months = [
             'jan' => 'Januari',
             'feb' => 'Februari',
@@ -119,19 +110,7 @@
                     <h1 class="mb-2">Luas Panen 4 Komoditas Palawija Tertinggi (ha) {{ $dashboardSp->tahun }}</h1>
                     <div class="grid grid-cols-2 gap-3">
                         <div>
-                            @for ($i = 1; $i <= 4; $i++)
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700">Jenis</label>
-                                    <select
-                                        wire:model.defer="formData.jenis_panen_palawija_tertinggi_{{ $i }}"
-                                        class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" required>
-                                        <option value="">Pilih</option>
-                                        @foreach ($palawijaLabels as $key => $label)
-                                            <option value="{{ $key }}">{{ $label }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            @endfor
+                            <x-enum-input id="jenis_panen_palawija_tertinggi_" :names="['Jagung', 'Kacang Tanah', 'Ubi Jalar', 'Ubi Kayu']" :options="['jagung', 'kacang_tanah', 'ubi_jalar', 'ubi_kayu']" />
                         </div>
                         <div>
                             @for ($i = 1; $i <= 4; $i++)
@@ -153,22 +132,7 @@
                     <div>
                         <h1>Jumlah 3 Tanaman BST Tertinggi {{ $dashboardSp->tahun }}</h1>
                         <div class="grid grid-cols-2 gap-3">
-                            <div>
-                                @for ($i = 1; $i <= 3; $i++)
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700">Jenis</label>
-                                        <select
-                                            wire:model.defer="formData.jenis_tanaman_bst_tertinggi_{{ $i }}"
-                                            class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm"
-                                            required>
-                                            <option value="">Pilih</option>
-                                            @foreach ($bstLabels as $key => $label)
-                                                <option value="{{ $key }}">{{ $label }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                @endfor
-                            </div>
+                            <x-enum-input id="jenis_tanaman_bst_tertinggi_" :names="['Pisang', 'Nanas', 'Durian']" :options="['pisang', 'nanas', 'durian']" />
                             <div>
                                 @for ($i = 1; $i <= 3; $i++)
                                     <div>
@@ -188,22 +152,7 @@
                     <div>
                         <h1>Luas Panen 3 Tanaman SBS Tertinggi (ha) {{ $dashboardSp->tahun }}</h1>
                         <div class="grid grid-cols-2 gap-3">
-                            <div>
-                                @for ($i = 1; $i <= 3; $i++)
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700">Jenis</label>
-                                        <select
-                                            wire:model.defer="formData.jenis_tanaman_sbs_tertinggi_{{ $i }}"
-                                            class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm"
-                                            required>
-                                            <option value="">Pilih</option>
-                                            @foreach ($sbsLabels as $key => $label)
-                                                <option value="{{ $key }}">{{ $label }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                @endfor
-                            </div>
+                            <x-enum-input id="jenis_tanaman_sbs_tertinggi_" :names="['Bayam', 'Kangkung', 'Sawi']" :options="['bayam', 'kangkung', 'sawi']" />
                             <div>
                                 @for ($i = 1; $i <= 3; $i++)
                                     <div>
@@ -236,20 +185,7 @@
                 <div>
                     <h1 class="mb-2">Jumlah Ternak Potong menurut Jenisnya {{ $dashboardSp->tahun }}</h1>
                     <div class="grid grid-cols-2 gap-3">
-                        <div>
-                            @for ($i = 1; $i <= 4; $i++)
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700">Jenis</label>
-                                    <select wire:model.defer="formData.jenis_ternak_potong_{{ $i }}"
-                                        class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" required>
-                                        <option value="">Pilih</option>
-                                        @foreach ($ternakLabels as $key => $label)
-                                            <option value="{{ $key }}">{{ $label }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            @endfor
-                        </div>
+                        <x-enum-input id="jenis_ternak_potong_" :names="['Kambing', 'Babi', 'Sapi', 'Kerbau']" :options="['kambing', 'babi', 'sapi', 'kerbau']" />
                         <div>
                             @for ($i = 1; $i <= 4; $i++)
                                 <div>
@@ -268,17 +204,15 @@
                 <div>
                     <h1 class="mb-2">Tren Pemotongan Ternak 5 Tahun Terakhir</h1>
                     <div class="grid grid-cols-2 gap-3">
-                        <div>
-                            @for ($i = 1; $i <= 5; $i++)
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700">Tahun</label>
-                                    <input type="text"
-                                        wire:model.defer="formData.tahun_tren_pemotongan_ternak_{{ $i }}"
-                                        placeholder="Masukkan tahun"
-                                        class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" required />
-                                </div>
-                            @endfor
-                        </div>
+                        @php
+                            $year = \Illuminate\Support\Carbon::now()->year;
+                            $years = [];
+
+                            for ($i = 0; $i < 5; $i++) {
+                                $years[] = $year - $i;
+                            }
+                        @endphp
+                        <x-enum-input id="tahun_tren_pemotongan_ternak_" :names="$years" :options="$years" />
                         <div>
                             @for ($i = 1; $i <= 5; $i++)
                                 <div>

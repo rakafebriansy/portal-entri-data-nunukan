@@ -56,23 +56,21 @@
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Jumlah Alsintan {{ $dashboardSp->tahun }}
                             (dalam unit)</label>
-                        <input readonly
-                         type="text" wire:model.defer="formData.jumlah_alsintan" placeholder="Masukkan jumlah"
+                        <input readonly type="text" wire:model.defer="formData.jumlah_alsintan"
+                            placeholder="Masukkan jumlah"
                             class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" required />
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Jumlah Penggunaan Benih
                             {{ $dashboardSp->tahun }} (dalam ton)</label>
-                        <input readonly
-                         type="text" wire:model.defer="formData.jumlah_penggunaan_benih"
+                        <input readonly type="text" wire:model.defer="formData.jumlah_penggunaan_benih"
                             placeholder="Masukkan jumlah"
                             class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" required />
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Total Luas Penggunaan Lahan Pertanian
                             {{ $dashboardSp->tahun }} (dalam hektar)</label>
-                        <input readonly
-                         type="text" wire:model.defer="formData.total_luas_penggunaan_lahan_pertanian"
+                        <input readonly type="text" wire:model.defer="formData.total_luas_penggunaan_lahan_pertanian"
                             placeholder="Masukkan jumlah"
                             class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" required />
                     </div>
@@ -85,8 +83,7 @@
                             @foreach (['jan', 'mar', 'mei', 'jul', 'sep', 'nov'] as $month)
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">{{ $months[$month] }}</label>
-                                    <input readonly
-                                     type="text"
+                                    <input readonly type="text"
                                         wire:model.defer="formData.luas_panen_jagung_{{ $month }}"
                                         placeholder="Masukkan jumlah"
                                         class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" required />
@@ -98,8 +95,7 @@
                                 <div>
                                     <label
                                         class="block text-sm font-medium text-gray-700">{{ $months[$month] }}</label>
-                                    <input readonly
-                                     type="text"
+                                    <input readonly type="text"
                                         wire:model.defer="formData.luas_panen_jagung_{{ $month }}"
                                         placeholder="Masukkan jumlah"
                                         class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" required />
@@ -127,14 +123,9 @@
                             @for ($i = 1; $i <= 4; $i++)
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Jenis</label>
-                                    <select disabled
-                                        wire:model.defer="formData.jenis_panen_palawija_tertinggi_{{ $i }}"
-                                        class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" required>
-                                        <option value="">Pilih</option>
-                                        @foreach ($palawijaLabels as $key => $label)
-                                            <option value="{{ $key }}">{{ $label }}</option>
-                                        @endforeach
-                                    </select>
+                                    <input readonly type="text"
+                                        value="{{ $palawijaLabels[$this->formData['jenis_panen_palawija_tertinggi_' . $i]] }}"
+                                        class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" required />
                                 </div>
                             @endfor
                         </div>
@@ -142,8 +133,7 @@
                             @for ($i = 1; $i <= 4; $i++)
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Luas</label>
-                                    <input readonly
-                                     type="text"
+                                    <input readonly type="text"
                                         wire:model.defer="formData.luas_panen_palawija_tertinggi_{{ $i }}"
                                         placeholder="Masukkan jumlah"
                                         class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" required />
@@ -163,15 +153,10 @@
                                 @for ($i = 1; $i <= 3; $i++)
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Jenis</label>
-                                        <select disabled
-                                            wire:model.defer="formData.jenis_tanaman_bst_tertinggi_{{ $i }}"
+                                        <input readonly type="text"
+                                            value="{{ $bstLabels[$this->formData['jenis_tanaman_bst_tertinggi_' . $i]] }}"
                                             class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm"
-                                            required>
-                                            <option value="">Pilih</option>
-                                            @foreach ($bstLabels as $key => $label)
-                                                <option value="{{ $key }}">{{ $label }}</option>
-                                            @endforeach
-                                        </select>
+                                            required />
                                     </div>
                                 @endfor
                             </div>
@@ -179,8 +164,7 @@
                                 @for ($i = 1; $i <= 3; $i++)
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Jumlah</label>
-                                        <input readonly
-                                         type="text"
+                                        <input readonly type="text"
                                             wire:model.defer="formData.jumlah_tanaman_bst_tertinggi_{{ $i }}"
                                             placeholder="Masukkan jumlah"
                                             class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm"
@@ -199,15 +183,10 @@
                                 @for ($i = 1; $i <= 3; $i++)
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Jenis</label>
-                                        <select disabled
-                                            wire:model.defer="formData.jenis_tanaman_sbs_tertinggi_{{ $i }}"
+                                        <input readonly type="text"
+                                            value="{{ $sbsLabels[$this->formData['jenis_tanaman_sbs_tertinggi_' . $i]] }}"
                                             class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm"
-                                            required>
-                                            <option value="">Pilih</option>
-                                            @foreach ($sbsLabels as $key => $label)
-                                                <option value="{{ $key }}">{{ $label }}</option>
-                                            @endforeach
-                                        </select>
+                                            required />
                                     </div>
                                 @endfor
                             </div>
@@ -215,8 +194,7 @@
                                 @for ($i = 1; $i <= 3; $i++)
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Jumlah</label>
-                                        <input readonly
-                                         type="text"
+                                        <input readonly type="text"
                                             wire:model.defer="formData.luas_tanaman_sbs_tertinggi_{{ $i }}"
                                             placeholder="Masukkan jumlah"
                                             class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm"
@@ -248,13 +226,9 @@
                             @for ($i = 1; $i <= 4; $i++)
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Jenis</label>
-                                    <select disabled wire:model.defer="formData.jenis_ternak_potong_{{ $i }}"
-                                        class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" required>
-                                        <option value="">Pilih</option>
-                                        @foreach ($ternakLabels as $key => $label)
-                                            <option value="{{ $key }}">{{ $label }}</option>
-                                        @endforeach
-                                    </select>
+                                    <input readonly type="text"
+                                        value="{{ $ternakLabels[$this->formData['jenis_ternak_potong_' . $i]] }}"
+                                        class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" required />
                                 </div>
                             @endfor
                         </div>
@@ -262,8 +236,7 @@
                             @for ($i = 1; $i <= 4; $i++)
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Jumlah</label>
-                                    <input readonly
-                                     type="text"
+                                    <input readonly type="text"
                                         wire:model.defer="formData.jumlah_ternak_potong_{{ $i }}"
                                         placeholder="Masukkan jumlah"
                                         class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" required />
@@ -281,8 +254,7 @@
                             @for ($i = 1; $i <= 5; $i++)
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Tahun</label>
-                                    <input readonly
-                                     type="text"
+                                    <input readonly type="text"
                                         wire:model.defer="formData.tahun_tren_pemotongan_ternak_{{ $i }}"
                                         placeholder="Masukkan tahun"
                                         class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" required />
@@ -293,8 +265,7 @@
                             @for ($i = 1; $i <= 5; $i++)
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Jumlah</label>
-                                    <input readonly
-                                     type="text"
+                                    <input readonly type="text"
                                         wire:model.defer="formData.jumlah_tren_pemotongan_ternak_{{ $i }}"
                                         placeholder="Masukkan jumlah"
                                         class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" required />
@@ -305,9 +276,8 @@
                 </div>
             </div>
 
-            <div class="flex justify-between">
+            <div class="flex justify-end">
                 <x-filament::button color="gray" wire:click="previousStep">Kembali</x-filament::button>
-                <x-filament::button color="success" wire:click="submit">Simpan</x-filament::button>
             </div>
         </div>
     @endif
