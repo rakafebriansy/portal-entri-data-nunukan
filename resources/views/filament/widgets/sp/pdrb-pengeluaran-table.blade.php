@@ -1,13 +1,13 @@
 <x-filament-widgets::widget>
     <x-filament::section>
         <div class="w-full overflow-x-auto max-h-[200px]">
-            <h2 class="text-lg font-bold mb-2">Tabel PDRB Pengeluaran</h2>
+            <h2 class="text-lg font-bold mb-2">Tabel PDRB Pengeluaran  {{ $this->year }}</h2>
 
             <div class="rounded-lg overflow-hidden">
                 <table class="w-full border-collapse text-sm">
                 <thead class="bg-[#3B7BDB] text-white">
                     <tr>
-                        <th class="py-2 px-4 text-left">Tabel PDRB Pengeluaran</th>
+                        <th class="py-2 px-4 text-left">Komp</th>
                         <th class="py-2 px-4 text-right">ADHB</th>
                         <th class="py-2 px-4 text-right">ADHK</th>
                     </tr>

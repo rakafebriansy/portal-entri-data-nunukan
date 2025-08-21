@@ -14,7 +14,10 @@ class SektorPengeluaranChart extends ChartWidget
         $year = session('pdrb_selected_year') ?? now()->year;
         $this->year = $year;
     }
-
+    public function getHeading(): ?string
+    {
+        return 'Kolom Chart Pengeluaran ' . $this->year;
+    }
     protected function getData(): array
     {
         $data = DetailDashboardPdrb::whereHas('dashboardPdrb', function ($query) {

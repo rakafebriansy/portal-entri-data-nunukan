@@ -15,6 +15,11 @@ class SektorLapanganUsahaChart extends ChartWidget
         $this->year = $year;
     }
 
+    public function getHeading(): ?string
+    {
+        return 'Kolom Chart Lapangan Usaha ' . $this->year;
+    }
+
     protected function getData(): array
     {
         $data = DetailDashboardPdrb::whereHas('dashboardPdrb', function ($query) {

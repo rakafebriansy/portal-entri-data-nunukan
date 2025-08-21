@@ -19,6 +19,8 @@ class PDRB extends Page
     protected static ?string $navigationLabel = 'PDRB';
     protected static ?string $navigationGroup = 'Dashboard';
     protected static string $view = 'filament.pages.dashboard.p-d-r-b';
+    public $year;
+
     public function mount(): void
     {
         $this->year = session('pdrb_selected_year', now()->year);
@@ -65,8 +67,8 @@ class PDRB extends Page
                 ])
                 ->action(function (array $data) {
                     $this->year = (int) $data['year'];
-                    session(['sp_selected_year' => $this->year]);
-                    redirect('/dashboard/pdrb');
+                    session(['pdrb_selected_year' => $this->year]);
+                    redirect('/dashboard/p-d-r-b');
                 })
                 ->button(),
         ];

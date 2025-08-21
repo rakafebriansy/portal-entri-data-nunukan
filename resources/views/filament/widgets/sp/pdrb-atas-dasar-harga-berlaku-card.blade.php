@@ -9,7 +9,7 @@
                 </svg>
             </div>
             <div class="flex flex-col justify-between">
-                <h2 class="text-xs font-bold text-gray-700">PDRB Atas Dasar Harga Berlaku</h2>
+                <h2 class="text-xs font-bold text-gray-700">PDRB Atas Dasar Harga Berlaku  {{ $this->year }}</h2>
                 <p class="text-sm font-extrabold text-indigo-600">Rp {{ number_format($this->getPdrbAtasDasarHargaBerlaku(), 0, ',', '.') }}</p>
             </div>
         </div>

@@ -9,7 +9,7 @@
                 </svg>
             </div>
             <div class="flex flex-col justify-between">
-                <h2 class="text-xs font-bold text-gray-700">PDRB per kapita</h2>
+                <h2 class="text-xs font-bold text-gray-700">PDRB per kapita  {{ $this->year }}</h2>
                 <p class="text-sm font-extrabold text-indigo-600">{{ $this->getPdrbPerKapita() }}</p>
             </div>
         </div>

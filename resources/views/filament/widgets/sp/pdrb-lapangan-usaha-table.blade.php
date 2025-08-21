@@ -1,7 +1,7 @@
 <x-filament-widgets::widget>
     <x-filament::section>
         <div class="w-full overflow-x-auto max-h-[200px]">
-            <h2 class="text-lg font-bold mb-2">Tabel PDRB Lapangan Usaha</h2>
+            <h2 class="text-lg font-bold mb-2">Tabel PDRB Lapangan Usaha  {{ $this->year }}</h2>
 
             <div class="rounded-lg overflow-hidden">
                 <table class="w-full border-collapse text-sm">

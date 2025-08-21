@@ -7,7 +7,7 @@ use Filament\Widgets\ChartWidget;
 
 class AdhbAdhkChart extends ChartWidget
 {
-    protected static ?string $heading = 'Tren ADHB & ADHK Lapangan Usaha + Pengeluaran (Sepanjang Masa)';
+    protected static ?string $heading = 'Tren ADHB & ADHK Lapangan Usaha + Pengeluaran (10 tahun terakhir)';
 
     protected function getData(): array
     {
@@ -15,6 +15,7 @@ class AdhbAdhkChart extends ChartWidget
             ->select('detail_dashboard_pdrbs.*', 'dashboard_pdrbs.tahun')
             ->join('dashboard_pdrbs', 'dashboard_pdrbs.id', '=', 'detail_dashboard_pdrbs.dashboard_pdrb_id')
             ->orderBy('dashboard_pdrbs.tahun')
+            ->take(10)
             ->get();
 
         $labels = [];
