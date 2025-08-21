@@ -68,7 +68,7 @@
             <div class="grid grid-cols-2 gap-6">
                 <div>
                     <h1 class="mb-2">Sektor Lapangan Usaha</h1>
-                    @for ($i = 1; $i <= 4; $i++)
+                    @for ($i = 1; $i <= 14; $i++)
                         <div class="mb-3">
                             <label class="block text-sm font-medium text-gray-700">Sektor {{ $i }}</label>
                             <div class="grid grid-cols-3 gap-3">
@@ -118,7 +118,7 @@
             <div class="grid grid-cols-2 gap-6">
                 <div>
                     <h1 class="mb-2">Sektor Pengeluaran Tambahan</h1>
-                    @for ($i = 1; $i <= 4; $i++)
+                    @for ($i = 1; $i <= 6; $i++)
                         <div class="mb-3">
                             <label class="block text-sm font-medium text-gray-700">Sektor {{ $i }}</label>
                             <div class="grid grid-cols-3 gap-3">

@@ -78,7 +78,7 @@
                         <h1 class="mb-2">Sektor Lapangan Usaha
                         </h1>
                         <div class="">
-                            @for ($i = 1; $i < 5; $i++)
+                            @for ($i = 1; $i < 15; $i++)
                                 <div class="">
                                     <label class="block text-sm font-medium text-gray-700">Sektor
                                         {{ $i }}</label>
@@ -139,7 +139,7 @@
                         <h1 class="mb-2">Sektor Pengeluaran
                         </h1>
                         <div class="">
-                            @for ($i = 1; $i < 5; $i++)
+                            @for ($i = 1; $i < 7; $i++)
                                 <div class="">
                                     <label class="block text-sm font-medium text-gray-700">Sektor
                                         {{ $i }}</label>
