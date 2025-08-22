@@ -18,7 +18,7 @@ class KelolaDashboardPdrb extends Page implements HasForms
 
     protected static ?string $navigationLabel = 'PDRB';
     protected static ?string $navigationGroup = 'Kelola';
-    
+
     public $dashboardPdrbs;
     public $search = '';
     public $formData = [
@@ -29,6 +29,10 @@ class KelolaDashboardPdrb extends Page implements HasForms
     public function mount()
     {
         $this->loadData();
+    }
+    public static function shouldRegisterNavigation(): bool
+    {
+        return auth()->user() != null ? auth()->user()->role == 'admin' : false;
     }
     public function updatedSearch()
     {

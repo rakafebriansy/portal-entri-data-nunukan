@@ -28,7 +28,10 @@ class KelolaDashboardStatistikProduksi extends Page implements HasForms
     {
         $this->loadData();
     }
-
+    public static function shouldRegisterNavigation(): bool
+    {
+        return auth()->user() != null ? auth()->user()->role == 'admin' : false;
+    }
     public function updatedSearch()
     {
         $this->loadData();
