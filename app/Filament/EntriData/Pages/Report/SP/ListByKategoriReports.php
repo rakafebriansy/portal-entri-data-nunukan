@@ -12,10 +12,13 @@ use Filament\Tables\Columns\ViewColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Concerns\InteractsWithTable;
+use Filament\Tables\Concerns\HasHeader;
+use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\View\View;
 
 class ListByKategoriReports extends Page implements HasTable
 {
-    use InteractsWithTable;
+    use InteractsWithTable, HasHeader;
     public ?KategoriSp $kategori;
 
     protected static ?string $navigationIcon = null;
@@ -25,6 +28,10 @@ class ListByKategoriReports extends Page implements HasTable
     public static function shouldRegisterNavigation(): bool
     {
         return false;
+    }
+    protected function getTableHeader(): View|Htmlable|null
+    {
+        return view('components.table-header');
     }
 
     public function getTitle(): string
