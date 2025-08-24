@@ -11,6 +11,7 @@ use App\Filament\Widgets\Sp\PdrbPerKapitaCard;
 use App\Filament\Widgets\Sp\PertumbuhanYoyCard;
 use App\Filament\Widgets\Sp\SektorLapanganUsahaChart;
 use App\Filament\Widgets\Sp\SektorPengeluaranChart;
+use App\Models\DashboardPdrb;
 use Filament\Pages\Page;
 
 class PDRB extends Page
@@ -49,11 +50,12 @@ class PDRB extends Page
     }
     protected function getActions(): array
     {
-        $currentYear = now()->year;
-        $years = [];
-        for ($i = 0; $i < 5; $i++) {
-            $years[] = $currentYear - $i;
-        }
+        $years = DashboardPdrb::query()
+            ->select('tahun')
+            ->distinct()
+            ->orderBy('tahun', 'desc')
+            ->pluck('tahun')
+            ->toArray();
 
         return [
             \Filament\Pages\Actions\Action::make('ubahTahun')
@@ -61,7 +63,7 @@ class PDRB extends Page
                 ->form([
                     \Filament\Forms\Components\Select::make('year')
                         ->label('Pilih Tahun')
-                        ->options(array_combine($years, $years))
+                        ->options($years)
                         ->default($this->year)
                         ->required(),
                 ])

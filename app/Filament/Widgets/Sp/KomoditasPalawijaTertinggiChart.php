@@ -61,6 +61,28 @@ class KomoditasPalawijaTertinggiChart extends ChartWidget
             ],
         ];
     }
+    protected function getOptions(): array
+    {
+        return [
+            'plugins' => [
+                'legend' => [
+                    'position' => 'bottom',
+                ],
+            ],
+            'scales' => [
+                'x' => [
+                    'ticks' => [
+                        'display' => false
+                    ]
+                ],
+                'y' => [
+                    'ticks' => [
+                        'display' => false
+                    ]
+                ],
+            ],
+        ];
+    }
     protected function getMaxHeight(): string
     {
         return '200px';

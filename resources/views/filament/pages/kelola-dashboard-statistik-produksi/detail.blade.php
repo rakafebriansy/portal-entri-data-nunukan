@@ -23,15 +23,6 @@
     </div>
 
     @php
-        $palawijaLabels = [
-            'jagung' => 'Jagung',
-            'kacang_tanah' => 'Kacang Tanah',
-            'ubi_jalar' => 'Ubi Jalar',
-            'ubi_kayu' => 'Ubi Kayu',
-        ];
-        $bstLabels = ['pisang' => 'Pisang', 'nanas' => 'Nanas', 'durian' => 'Durian'];
-        $sbsLabels = ['bayam' => 'Bayam', 'kangkung' => 'Kangkung', 'sawi' => 'Sawi'];
-        $ternakLabels = ['kambing' => 'Kambing', 'babi' => 'Babi', 'sapi' => 'Sapi', 'kerbau' => 'Kerbau'];
         $months = [
             'jan' => 'Januari',
             'feb' => 'Februari',
@@ -124,7 +115,7 @@
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Jenis</label>
                                     <input readonly type="text"
-                                        value="{{ $palawijaLabels[$this->formData['jenis_panen_palawija_tertinggi_' . $i]] }}"
+                                        value="{{ $this->formData['jenis_panen_palawija_tertinggi_' . $i] }}"
                                         class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" required />
                                 </div>
                             @endfor
@@ -154,7 +145,7 @@
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Jenis</label>
                                         <input readonly type="text"
-                                            value="{{ $bstLabels[$this->formData['jenis_tanaman_bst_tertinggi_' . $i]] }}"
+                                            value="{{ $this->formData['jenis_tanaman_bst_tertinggi_' . $i] }}"
                                             class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm"
                                             required />
                                     </div>
@@ -184,7 +175,7 @@
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Jenis</label>
                                         <input readonly type="text"
-                                            value="{{ $sbsLabels[$this->formData['jenis_tanaman_sbs_tertinggi_' . $i]] }}"
+                                            value="{{ $this->formData['jenis_tanaman_sbs_tertinggi_' . $i] }}"
                                             class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm"
                                             required />
                                     </div>
@@ -227,7 +218,7 @@
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Jenis</label>
                                     <input readonly type="text"
-                                        value="{{ $ternakLabels[$this->formData['jenis_ternak_potong_' . $i]] }}"
+                                        value="{{ $this->formData['jenis_ternak_potong_' . $i] }}"
                                         class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" required />
                                 </div>
                             @endfor

@@ -79,6 +79,9 @@ class ReportPdrbResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->header(function () {
+                return view('components.table-header');
+            })
             ->recordUrl(null)
             ->columns([
                 TextColumn::make('kategoriPdrb.nama')

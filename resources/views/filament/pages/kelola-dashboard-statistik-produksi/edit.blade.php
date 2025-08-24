@@ -109,8 +109,17 @@
                 <div>
                     <h1 class="mb-2">Luas Panen 4 Komoditas Palawija Tertinggi (ha) {{ $dashboardSp->tahun }}</h1>
                     <div class="grid grid-cols-2 gap-3">
+                        {{-- <x-enum-input id="jenis_panen_palawija_tertinggi_" :names="['Jagung', 'Kacang Tanah', 'Ubi Jalar', 'Ubi Kayu']" :options="['jagung', 'kacang_tanah', 'ubi_jalar', 'ubi_kayu']" /> --}}
                         <div>
-                            <x-enum-input id="jenis_panen_palawija_tertinggi_" :names="['Jagung', 'Kacang Tanah', 'Ubi Jalar', 'Ubi Kayu']" :options="['jagung', 'kacang_tanah', 'ubi_jalar', 'ubi_kayu']" />
+                            @for ($i = 1; $i <= 4; $i++)
+                                <div class="text-sm">
+                                    <label>Jenis</label>
+                                    <input type="text"
+                                        wire:model.defer="formData.jenis_panen_palawija_tertinggi_{{ $i }}"
+                                        placeholder="Masukkan jenis"
+                                        class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" />
+                                </div>
+                            @endfor
                         </div>
                         <div>
                             @for ($i = 1; $i <= 4; $i++)
@@ -132,7 +141,18 @@
                     <div>
                         <h1>Jumlah 3 Tanaman BST Tertinggi {{ $dashboardSp->tahun }}</h1>
                         <div class="grid grid-cols-2 gap-3">
-                            <x-enum-input id="jenis_tanaman_bst_tertinggi_" :names="['Pisang', 'Nanas', 'Durian']" :options="['pisang', 'nanas', 'durian']" />
+                            {{-- <x-enum-input id="jenis_tanaman_bst_tertinggi_" :names="['Pisang', 'Nanas', 'Durian']" :options="['pisang', 'nanas', 'durian']" /> --}}
+                            <div>
+                                @for ($i = 1; $i <= 3; $i++)
+                                    <div class="text-sm">
+                                        <label>Jenis</label>
+                                        <input type="text"
+                                            wire:model.defer="formData.jenis_tanaman_bst_tertinggi_{{ $i }}"
+                                            placeholder="Masukkan jenis"
+                                            class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" />
+                                    </div>
+                                @endfor
+                            </div>
                             <div>
                                 @for ($i = 1; $i <= 3; $i++)
                                     <div>
@@ -152,7 +172,18 @@
                     <div>
                         <h1>Luas Panen 3 Tanaman SBS Tertinggi (ha) {{ $dashboardSp->tahun }}</h1>
                         <div class="grid grid-cols-2 gap-3">
-                            <x-enum-input id="jenis_tanaman_sbs_tertinggi_" :names="['Bayam', 'Kangkung', 'Sawi']" :options="['bayam', 'kangkung', 'sawi']" />
+                            {{-- <x-enum-input id="jenis_tanaman_sbs_tertinggi_" :names="['Bayam', 'Kangkung', 'Sawi']" :options="['bayam', 'kangkung', 'sawi']" /> --}}
+                            <div>
+                                @for ($i = 1; $i <= 3; $i++)
+                                    <div class="text-sm">
+                                        <label>Jenis</label>
+                                        <input type="text"
+                                            wire:model.defer="formData.jenis_tanaman_sbs_tertinggi_{{ $i }}"
+                                            placeholder="Masukkan jenis"
+                                            class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" />
+                                    </div>
+                                @endfor
+                            </div>
                             <div>
                                 @for ($i = 1; $i <= 3; $i++)
                                     <div>
@@ -185,7 +216,18 @@
                 <div>
                     <h1 class="mb-2">Jumlah Ternak Potong menurut Jenisnya {{ $dashboardSp->tahun }}</h1>
                     <div class="grid grid-cols-2 gap-3">
-                        <x-enum-input id="jenis_ternak_potong_" :names="['Kambing', 'Babi', 'Sapi', 'Kerbau']" :options="['kambing', 'babi', 'sapi', 'kerbau']" />
+                        {{-- <x-enum-input id="jenis_ternak_potong_" :names="['Kambing', 'Babi', 'Sapi', 'Kerbau']" :options="['kambing', 'babi', 'sapi', 'kerbau']" /> --}}
+                        <div>
+                            @for ($i = 1; $i <= 4; $i++)
+                                <div class="text-sm">
+                                    <label>Jenis</label>
+                                    <input type="text"
+                                        wire:model.defer="formData.jenis_ternak_potong_{{ $i }}"
+                                        placeholder="Masukkan jenis"
+                                        class="mt-1 mb-5 block w-full border-gray-300 rounded-md shadow-sm" />
+                                </div>
+                            @endfor
+                        </div>
                         <div>
                             @for ($i = 1; $i <= 4; $i++)
                                 <div>
@@ -208,7 +250,7 @@
                             $year = \Illuminate\Support\Carbon::now()->year;
                             $years = [];
 
-                            for ($i = 0; $i < 5; $i++) {
+                            for ($i = 0; $i <= 4; $i++) {
                                 $years[] = $year - $i;
                             }
                         @endphp

@@ -61,11 +61,13 @@ class KelolaDashboardStatistikProduksi extends Page implements HasForms
         $this->reset('formData');
         $this->loadData();
         session()->flash('success', 'Statistik Produksi berhasil ditambahkan.');
+        redirect('/dashboard/kelola-dashboard-statistik-produksi');
     }
     public function delete($id)
     {
         DashboardSp::findOrFail($id)->delete();
         $this->dashboardSps = DashboardSp::all();
         session()->flash('success', 'Data berhasil dihapus!');
+        redirect('/dashboard/kelola-dashboard-statistik-produksi');
     }
 }

@@ -63,11 +63,13 @@ class KelolaDashboardPdrb extends Page implements HasForms
         $this->reset('formData');
         $this->loadData();
         session()->flash('success', 'PDRB berhasil ditambahkan.');
+        redirect('/dashboard/kelola-dashboard-pdrb');
     }
     public function delete($id)
     {
         DashboardPdrb::findOrFail($id)->delete();
         $this->dashboardPdrbs = DashboardPdrb::all();
         session()->flash('success', 'Data berhasil dihapus!');
+        redirect('/dashboard/kelola-dashboard-pdrb');
     }
 }

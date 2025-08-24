@@ -54,7 +54,7 @@ class DashboardSpSeeder extends Seeder
                 'jumlah_tanaman_bst_tertinggi_2' => fake()->numberBetween(100, 500),
                 'jenis_tanaman_bst_tertinggi_3' => fake()->randomElement(['pisang', 'nanas', 'durian']),
                 'jumlah_tanaman_bst_tertinggi_3' => fake()->numberBetween(100, 500),
-                'jenis_tanaman_sbs_tertinggi_1' => fake()->randomElement(['bayam', 'kangkung', 'sawi']),
+                'jenis_tanaman_sbs_tertinggi_1' => fake()->randomElement( ['bayam', 'kangkung', 'sawi']),
                 'luas_tanaman_sbs_tertinggi_1' => fake()->numberBetween(10, 200),
                 'jenis_tanaman_sbs_tertinggi_2' => fake()->randomElement(['bayam', 'kangkung', 'sawi']),
                 'luas_tanaman_sbs_tertinggi_2' => fake()->numberBetween(10, 200),

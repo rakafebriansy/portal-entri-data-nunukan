@@ -11,6 +11,7 @@ use App\Filament\Widgets\Sp\LuasPanenJagungChart;
 use App\Filament\Widgets\Sp\LuasPenggunaanLahanCard;
 use App\Filament\Widgets\Sp\LuasTanamanSbsTertinggiChart;
 use App\Filament\Widgets\Sp\TrenPemotonganTernakChart;
+use App\Models\DashboardSp;
 use Filament\Pages\Page;
 
 class StatistikProduksi extends Page
@@ -47,11 +48,12 @@ class StatistikProduksi extends Page
     }
     protected function getActions(): array
     {
-        $currentYear = now()->year;
-        $years = [];
-        for ($i = 0; $i < 5; $i++) {
-            $years[] = $currentYear - $i;
-        }
+        $years = DashboardSp::query()
+            ->select('tahun')
+            ->distinct()
+            ->orderBy('tahun', 'desc')
+            ->pluck('tahun')
+            ->toArray();
 
         return [
             \Filament\Pages\Actions\Action::make('ubahTahun')
@@ -59,7 +61,7 @@ class StatistikProduksi extends Page
                 ->form([
                     \Filament\Forms\Components\Select::make('year')
                         ->label('Pilih Tahun')
-                        ->options(array_combine($years, $years))
+                        ->options($years)
                         ->default($this->year)
                         ->required(),
                 ])
